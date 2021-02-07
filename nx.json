@@ -16,10 +16,10 @@
     }
   },
   "projects": {
-    "memory": { "tags": [] },
+    "memory": { "tags": ["scope:memory", "type:app"] },
     "memory-e2e": { "tags": [], "implicitDependencies": ["memory"] },
     "memory-feature-boardgame": { "tags": ["scope:memory", "type:feature"] },
-    "animations": { "tags": [] },
+    "animations": { "tags": ["scope:animation", "type:app"] },
     "animations-e2e": { "tags": [], "implicitDependencies": ["animations"] },
     "animations-feature-animation": {
       "tags": ["scope:animation", "type:feature"]
