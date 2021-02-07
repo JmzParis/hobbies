@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@hobbies/memory/feature-boardgame": [
+        "libs/memory/feature-boardgame/src/index.ts"
+      ],
+      "@hobbies/shared/util-kinetic": ["libs/shared/util-kinetic/src/index.ts"],
+      "@hobbies/shared/util-pot": ["libs/shared/util-pot/src/index.ts"],
+      "@hobbies/shared/util-drawing": ["libs/shared/util-drawing/src/index.ts"],
+      "@hobbies/animations/feature-animation": [
+        "libs/animations/feature-animation/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

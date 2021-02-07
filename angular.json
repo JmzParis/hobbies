@@ -19,12 +19,14 @@
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "strict": true
     },
     "@nrwl/angular:library": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "strict": true
     },
     "@nrwl/angular:component": {
       "style": "scss"
@@ -139,6 +141,245 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/memory-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "memory-feature-boardgame": {
+      "projectType": "library",
+      "root": "libs/memory/feature-boardgame",
+      "sourceRoot": "libs/memory/feature-boardgame/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/memory/feature-boardgame/src/**/*.ts",
+              "libs/memory/feature-boardgame/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/memory/feature-boardgame"],
+          "options": {
+            "jestConfig": "libs/memory/feature-boardgame/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-kinetic": {
+      "projectType": "library",
+      "root": "libs/shared/util-kinetic",
+      "sourceRoot": "libs/shared/util-kinetic/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util-kinetic/src/**/*.ts",
+              "libs/shared/util-kinetic/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-kinetic"],
+          "options": {
+            "jestConfig": "libs/shared/util-kinetic/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-pot": {
+      "projectType": "library",
+      "root": "libs/shared/util-pot",
+      "sourceRoot": "libs/shared/util-pot/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util-pot/src/**/*.ts",
+              "libs/shared/util-pot/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-pot"],
+          "options": {
+            "jestConfig": "libs/shared/util-pot/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-drawing": {
+      "projectType": "library",
+      "root": "libs/shared/util-drawing",
+      "sourceRoot": "libs/shared/util-drawing/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util-drawing/src/**/*.ts",
+              "libs/shared/util-drawing/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-drawing"],
+          "options": {
+            "jestConfig": "libs/shared/util-drawing/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "animations": {
+      "projectType": "application",
+      "root": "apps/animations",
+      "sourceRoot": "apps/animations/src",
+      "prefix": "jz",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/animations",
+            "index": "apps/animations/src/index.html",
+            "main": "apps/animations/src/main.ts",
+            "polyfills": "apps/animations/src/polyfills.ts",
+            "tsConfig": "apps/animations/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/animations/src/favicon.ico",
+              "apps/animations/src/assets"
+            ],
+            "styles": ["apps/animations/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/animations/src/environments/environment.ts",
+                  "with": "apps/animations/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "animations:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "animations:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "animations:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/animations/src/**/*.ts",
+              "apps/animations/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/animations"],
+          "options": {
+            "jestConfig": "apps/animations/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "animations-e2e": {
+      "root": "apps/animations-e2e",
+      "sourceRoot": "apps/animations-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/animations-e2e/cypress.json",
+            "tsConfig": "apps/animations-e2e/tsconfig.e2e.json",
+            "devServerTarget": "animations:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "animations:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/animations-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "animations-feature-animation": {
+      "projectType": "library",
+      "root": "libs/animations/feature-animation",
+      "sourceRoot": "libs/animations/feature-animation/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/animations/feature-animation/src/**/*.ts",
+              "libs/animations/feature-animation/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/animations/feature-animation"],
+          "options": {
+            "jestConfig": "libs/animations/feature-animation/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

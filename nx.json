@@ -17,6 +17,15 @@
   },
   "projects": {
     "memory": { "tags": [] },
-    "memory-e2e": { "tags": [], "implicitDependencies": ["memory"] }
+    "memory-e2e": { "tags": [], "implicitDependencies": ["memory"] },
+    "memory-feature-boardgame": { "tags": ["scope:memory", "type:feature"] },
+    "animations": { "tags": [] },
+    "animations-e2e": { "tags": [], "implicitDependencies": ["animations"] },
+    "animations-feature-animation": {
+      "tags": ["scope:animation", "type:feature"]
+    },
+    "shared-util-kinetic": { "tags": ["scope:shared", "type:util"] },
+    "shared-util-pot": { "tags": ["scope:shared", "type:util"] },
+    "shared-util-drawing": { "tags": ["scope:shared", "type:util"] }
   }
 }
