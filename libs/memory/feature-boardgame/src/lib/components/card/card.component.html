@@ -1,0 +1,19 @@
+<div *ngIf="card$ | async as card" 
+    class="flip-card" 
+    (click)="onClick()" 
+    [ngClass]="card.isFlipped ? 'flip-card_turn' : 'jello-horizontal'" 
+    >
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="assets/img/CardVerso.png" alt="Verso">
+        </div>
+        <div class="flip-card-back" [ngClass]="(0<=card.foundByPlayerId ? 'found playerid'+card.foundByPlayerId : '') + ' ' + (card.isWrong ? 'wrong' : '')">
+            <img *ngIf="!card.isReset"
+                alt="Recto" 
+                src="{{card.imagePath}}{{card.image}}.{{card.imageType}}" 
+                
+            >
+            <!-- [ngClass]="(0<=card.foundByPlayerId ? 'found playerid'+card.foundByPlayerId : '') + ' ' + (card.isWrong ? 'wrong' : '')" -->
+        </div>
+    </div>
+</div>

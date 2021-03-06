@@ -1,0 +1,31 @@
+.mainContainer {
+  display: flex;
+  .cardboard {
+    /* background-color: darkorange; */
+    /* width: 600px; */
+
+    display: inline-grid;
+    grid-gap: calc((var(--cardwidth) / 10) * 1px);
+    grid-template-columns: repeat(
+      var(--columncount),
+      calc(var(--cardwidth) * 1px)
+    );
+    grid-template-rows: repeat(
+      var(--columncount),
+      calc(var(--cardwidth) * 1px)
+    );
+    /* grid-auto-flow: column;  var(--cardWidth) var(--test)*/
+
+    background-color: #333;
+    color: #fff;
+    border-radius: 2%; //10px;
+    margin: 1%; // 10px;
+    padding: 2%; //20px;
+    /* font-size: 150%;*/
+  }
+  .playerContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}

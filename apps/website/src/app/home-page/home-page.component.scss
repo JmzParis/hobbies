@@ -1,0 +1,120 @@
+  main {
+    padding: 0 10px;
+    font-size: 17px;
+    display: flex;
+    flex-direction: row;     
+    flex-wrap: wrap;
+    section {
+      //background-color: #d8d8fc;
+      padding: 5px;
+      margin: 10px;
+      //background-color: chartreuse;
+      border-radius: 10px;
+      display: grid;
+      grid-template-rows: auto auto;
+  
+      header {
+        background-color: #143055;
+        color: white;
+        padding: 2px;
+        border-radius: 10px;
+        grid-row: 1;
+        justify-self: stretch;
+
+        display: grid;
+        grid-template-columns: 140px auto;
+        grid-template-areas: "picture headertext";
+        .picture {
+          grid-area: picture;
+          margin: 5px 5px 5px 15px;
+          padding: 0px;
+          align-items: stretch;
+        }
+        .headertext {
+          grid-area: headertext;
+          margin: 15px 0 0 0;
+          padding: 20px 40px 30px 40px;
+          align-items: stretch;
+        }
+      }
+      section {
+        grid-row: 2;
+        padding: 5px;
+        article {
+          justify-items: stretch;
+          .card {
+            display: grid;
+            grid-template-columns: 50px auto;
+            grid-template-areas: "picture description";
+            text-decoration: none;
+            
+            margin: 0px;
+            padding: 0px;
+
+            .picture {
+              grid-area: picture;
+              margin: 0px;
+              padding: 0px;
+              align-items: stretch;
+              border-radius: 5px;
+            }
+            .description {
+              grid-area: description;
+              margin: 0 0 0 0;
+              padding: 0 0 0 20px;
+
+              h3 {
+                text-align: left;
+                font-size: 18px;
+                margin: 0 0 0 0;
+                padding: 0 0 0 0;
+              }
+              p {
+                text-align: left;
+                margin: 0 0 0 0;
+                padding: 0 0 0 0;
+              }
+            }
+          }
+          
+          a:link, a:visited {          
+            background-color: rgb(179, 179, 248);
+            color: #143055;
+            padding: 10px 20px;
+            margin: 2px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px; 
+          }
+          
+          a:hover, a:active {
+            background-color: rgb(66, 70, 248);
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  
+  p {
+    text-align: center;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 22px;
+    margin: 15px 0 15px 0;    
+  }
+
+  h3 {
+    text-align: left;
+    font-size: 18px;
+    margin: 15px 0 15px 0;    
+    padding: 15px;
+  }
+  

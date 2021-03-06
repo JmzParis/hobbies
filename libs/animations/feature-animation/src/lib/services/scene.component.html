@@ -1,0 +1,12 @@
+<section>
+    <canvas #canvas (click)="leftSidebarVisible = true"></canvas>
+</section>
+<p-sidebar [(visible)]="leftSidebarVisible" styleClass="ui-sidebar-lg" [style]="{'overflow': 'auto'}" >
+    <h1 style="font-weight:normal;">Configuration</h1>
+    Delay:&nbsp;{{delay$ | async}} FPS:&nbsp;{{fps$ | async}} {{this.screenSize}}
+    <ng-container *ngTemplateOutlet="paramTemplate"></ng-container>
+    <!--   <p-button type="button" (click)="leftSidebarVisible = false" label="Close" styleClass="p-button-success"></p-button> -->
+    <p-button type="button" (click)="onRestart()" label="Rest🔄rt" styleClass="p-button-warning"></p-button>
+    &nbsp;
+    <p-button type="button" (click)="onStop()" label="St🛑p" styleClass="p-button-warning"></p-button>
+</p-sidebar>

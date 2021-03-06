@@ -1,0 +1,37 @@
+<section class='main'>
+    <section class="p-grid">
+        <label class="p-col-4">Color</label>
+        <p-dropdown class="p-col-8" [options]="colorModes" [(ngModel)]="userParam.colorMode" optionLabel="title" optionValue="value"></p-dropdown>
+        <br/>
+        <label class="p-col-4">Background</label>
+        <p-dropdown class="p-col-8" [options]="bgModes" [(ngModel)]="userParam.bgMode" optionLabel="title" optionValue="value"></p-dropdown>
+        <br/>
+    </section>
+    <hr/>
+    <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
+    <br/>
+    <br/>
+    <label>Radius Threshold: {{userParam.radiusThreshold}}</label>
+    <p-slider [(ngModel)]="userParam.radiusThreshold" [min]="10" [max]="200" [step]="10"></p-slider>
+    <br/>
+
+    <label>Drag intensity: {{userParam.dragIntensity}}</label>
+    <p-slider [(ngModel)]="userParam.dragIntensity" [min]="0" [max]="50" [step]="5"></p-slider>
+    <br/>
+    
+    <label>Repulsion intensity: {{userParam.repulsionIntensity}}</label>
+    <p-slider [(ngModel)]="userParam.repulsionIntensity" [min]="0" [max]="2" [step]="0.1"></p-slider>
+    <br/>
+
+    <label>Repulsion zone: {{userParam.repulsionZone}}px</label>
+    <p-slider [(ngModel)]="userParam.repulsionZone" [min]="0" [max]="50" [step]="1"></p-slider>
+    <br/>
+
+    <label>Spot count: {{userParam.spotCount}}</label>
+    <p-slider [(ngModel)]="userParam.spotCount" [min]="20" [max]="200" [step]="10"></p-slider>
+    <br/>
+
+    <label>Age threshold: {{userParam.ageThreshold}}</label>
+    <p-slider [(ngModel)]="userParam.ageThreshold" [min]="10" [max]="210" [step]="20"></p-slider>
+    <br/> 
+</section>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'jz-root',
+  selector: 'jz-animations-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

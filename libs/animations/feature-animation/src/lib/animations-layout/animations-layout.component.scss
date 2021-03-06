@@ -1,0 +1,23 @@
+main {
+  div {
+    background: rgb(0, 71, 0);
+
+    a:link,
+    a:visited {
+      background-color: rgb(129, 184, 129);
+      color: black;
+      border: 2px solid green;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      display: block;
+    }
+
+    a:hover,
+    a:active {
+      background-color: green;
+      color: white;
+    }
+  }
+}

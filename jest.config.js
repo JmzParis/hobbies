@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/libs/shared/util-drawing',
     '<rootDir>/apps/animations',
     '<rootDir>/libs/animations/feature-animation',
+    '<rootDir>/apps/website',
   ],
 };

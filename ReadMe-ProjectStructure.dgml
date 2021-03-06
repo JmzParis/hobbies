@@ -1,0 +1,49 @@
+<DirectedGraph GraphDirection="LeftToRight" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node ComponentFilename="c:\Dev\git\hobbies\apps\animations\src\app\app.component.ts" Label="jz-animations-root" Id="jz-animations-root" Category="RootComponent"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\animations\feature-animation\src\lib\animations-layout\animations-layout.component.ts" Label="jz-animations-layout" Id="jz-animations-layout"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\animations\feature-animation\src\lib\components\golden-spiral\components\double-golden-spiral.component.ts" Label="jz-double-golden-spiral" Id="jz-double-golden-spiral"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\animations\feature-animation\src\lib\components\golden-spiral\components\golden-spiral.component.ts" Label="jz-golden-spiral" Id="jz-golden-spiral"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\animations\feature-animation\src\lib\components\skin\components\skin.component.ts" Label="jz-skin" Id="jz-skin"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\apps\memory\src\app\app.component.ts" Label="jz-memory-root" Id="jz-memory-root" Category="RootComponent"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\memory\feature-boardgame\src\lib\board-layout\board-layout.component.ts" Label="jz-board-layout" Id="jz-board-layout"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\memory\feature-boardgame\src\lib\components\cardboard\cardboard.component.ts" Label="jz-cardboard" Id="jz-cardboard"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\memory\feature-boardgame\src\lib\components\card\card.component.ts" Label="jz-card" Id="jz-card"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\memory\feature-boardgame\src\lib\components\player-score\player-score.component.ts" Label="jz-player-score" Id="jz-player-score"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\memory\feature-boardgame\src\lib\components\game-conf\game-conf.component.ts" Label="jz-game-conf" Id="jz-game-conf"/>
+    <Node ComponentFilename="c:\Dev\git\hobbies\libs\animations\feature-animation\src\lib\components\orbit\components\orbit.component.ts" Label="jz-orbit" Id="jz-orbit" Category="RootComponent"/>
+  </Nodes>
+  <Links>
+    <Link Source="jz-animations-root" Target="jz-animations-layout"/>
+    <Link Source="jz-animations-layout" Target="jz-double-golden-spiral"/>
+    <Link Source="jz-animations-layout" Target="jz-golden-spiral"/>
+    <Link Source="jz-animations-layout" Target="jz-skin"/>
+    <Link Source="jz-memory-root" Target="jz-board-layout"/>
+    <Link Source="jz-board-layout" Target="jz-cardboard"/>
+    <Link Source="jz-cardboard" Target="jz-card"/>
+    <Link Source="jz-cardboard" Target="jz-player-score"/>
+    <Link Source="jz-board-layout" Target="jz-game-conf"/>
+  </Links>
+  <Categories>
+    <Category Id="RootComponent" Label="Root component" Background="#FF00AA00" IsTag="True"/>
+  </Categories>
+  <Properties>
+    <Property Id="ComponentFilename" DataType="System.String"/>
+    <Property Id="Background" DataType="System.Windows.Media.Brush"/>
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation"/>
+    <Property Id="GroupLabel" DataType="System.String"/>
+    <Property Id="IsTag" DataType="System.Boolean"/>
+    <Property Id="Label" DataType="System.String"/>
+    <Property Id="Layout" DataType="System.String"/>
+    <Property Id="TargetType" DataType="System.String"/>
+    <Property Id="ValueLabel" DataType="System.String"/>
+    <Property Id="ZoomLevel" DataType="System.String"/>
+    <Property Id="Expression" DataType="System.String"/>
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Root component" ValueLabel="Has category">
+      <Condition Expression="HasCategory('RootComponent')"/>
+      <Setter Property="#FF00AA00"/>
+    </Style>
+  </Styles>
+</DirectedGraph>

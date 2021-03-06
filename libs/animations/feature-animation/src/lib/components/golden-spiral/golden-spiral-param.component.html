@@ -1,0 +1,48 @@
+<section class='main'>
+    <aside>
+        Spiral flower build using the <a href="https://en.wikipedia.org/wiki/Golden_angle#Golden_angle_in_nature">Golden Angle</a>.
+        For inspirational have a look at <a href="http://www.johnedmark.com/">John Edmark</a>
+    </aside>
+    <br/>
+    <section class="p-grid">
+        <label class="p-col-4">Color:</label>
+        <p-dropdown class="p-col-8" [options]="colorModes" [(ngModel)]="userParam.colorMode" optionLabel="title" optionValue="value"></p-dropdown>
+        <br/>
+        <label class="p-col-4">Drawing:</label>
+        <p-dropdown class="p-col-8" [options]="drawings" [(ngModel)]="userParam.drawing" optionLabel="title" optionValue="value"></p-dropdown>
+        <br/>
+        <label class="p-col-4">Angle: {{userParam.angle|number}}°</label>
+        <p-dropdown class="p-col-8" [options]="angles" [(ngModel)]="userParam.angle" optionLabel="title" optionValue="value"></p-dropdown>
+    </section>
+    <br/>
+    <hr/>
+    <section>
+        <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
+        <br/>
+        <br/>
+        <label>Petal initial radius: {{userParam.sizeI}}</label>
+        <p-slider [(ngModel)]="userParam.sizeI" [min]="0" [max]="400" [step]="10"></p-slider>
+        <br/>
+        <label>Petal radius increase: {{userParam.sizeR}}</label>
+        <p-slider [(ngModel)]="userParam.sizeR" [min]="0" [max]="400" [step]="10"></p-slider>
+        <br/>
+        <label>Rotating speed: {{userParam.speedR}}</label> 
+        <p-slider [(ngModel)]="userParam.speedR" [min]="-100" [max]="100" [step]="1"></p-slider>
+        <br/>
+        <label>Growing speed: {{userParam.speedG}}</label>
+        <p-slider [(ngModel)]="userParam.speedG" [min]="-10" [max]="10" [step]="1"></p-slider>
+        <br/>
+        <label>Flower petal layers: {{userParam.dr}}</label>
+        <p-slider [(ngModel)]="userParam.dr" [min]="10" [max]="60" [step]="1"></p-slider>
+        <br/>
+        <label>Flower external radius: {{userParam.rStart}}</label>
+        <p-slider [(ngModel)]="userParam.rStart" [min]="-500" [max]="500" [step]="10"></p-slider>
+        <br/>
+        <label>Flower internal radius: {{userParam.rEnd}}</label>
+        <p-slider [(ngModel)]="userParam.rEnd" [min]="-500" [max]="500" [step]="10"></p-slider>
+        <br/>
+        <label>Alpha: {{userParam.alpha}}</label>
+        <p-slider [(ngModel)]="userParam.alpha" [min]="45" [max]="100" [step]="5"></p-slider>
+        <br/>
+    </section>
+</section>

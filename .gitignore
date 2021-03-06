@@ -5,6 +5,10 @@
 /tmp
 /out-tsc
 
+#
+/libs/memory/feature-boardgame/src/assets
+/libs/animations/feature-animation/src/assets
+
 # dependencies
 /node_modules
 
