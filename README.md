@@ -2,4 +2,4 @@
 
 # Hobbies
 
-See it running [👀 here ](https://jmazalre.free.fr/).
+See it running [👀 here ](http://jmazalre.free.fr/).
