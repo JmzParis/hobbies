@@ -100,7 +100,7 @@ export class OrbitService implements DrawService {
     const movers = this.movers;
     const c = fullParam.canvasContext;
     const fxDraw = (x: number, y: number, r: number, s: DrawStyle) => {
-      this.colorService.setDrawStyle(s);
+      this.colorService.setDrawStyle(c, s);
       this.spriteDrawService.drawCircle(c, x, y, r);
     };
     const moverCount = movers.length;

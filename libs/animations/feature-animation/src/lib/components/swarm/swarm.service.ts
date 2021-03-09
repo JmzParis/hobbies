@@ -3,6 +3,7 @@ import { Mover, Space, Vector } from '@hobbies/shared/util-kinetic';
 import { SwarmParam, SwarmUserParam } from './swarm-param';
 import { DrawService } from '../../services/scene.service';
 import { ImageStoreService } from '@hobbies/shared/util-drawing';
+import { ImageBlock } from 'libs/shared/util-drawing/src/lib/services/image-store.service';
 
 interface MoverParam {
   img: HTMLImageElement;
@@ -17,7 +18,7 @@ export class SwarmService implements DrawService {
 
   private imageStoreKey = 'swarm';
   private images = [] as HTMLImageElement[];
-
+  
   constructor(private imageStore: ImageStoreService) {
     this.loadAllImages();
   }
@@ -33,7 +34,7 @@ export class SwarmService implements DrawService {
     t.push(path + 'BulleOrange.png');
     t.push(path + 'BulleJaune.png');
     t.push(path + 'BulleViolette.png');
-    const bloc = this.imageStore.load(this.imageStoreKey, t);
+    const bloc = this.imageStore.load(this.imageStoreKey, t);  
     this.images = bloc.images;
   }
 

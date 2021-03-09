@@ -99,10 +99,10 @@ export class SkinService implements DrawService {
 
   public draw(delay: number, fullParam: SkinParam): void {
     const skinUserParam = fullParam.userParam as SkinUserParam;
-    this.colorService.setDefaultColors();
-    this.near(skinUserParam);
-
     const c = fullParam.canvasContext;
+    this.colorService.setDefaultColors(c);
+    this.near(skinUserParam);
+    
     const fxDraw = (x: number, y: number, r: number) => {
       this.spriteDrawService.drawCircle(c, x, y, r);
     };

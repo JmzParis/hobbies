@@ -26,6 +26,7 @@ import { SwarmParamComponent } from './components/swarm/swarm-param.component';
 import { ScrollComponent } from './components/scroll/scroll.component';
 import { ScrollParamComponent } from './components/scroll/scroll-param.component';
 import { AnimationsLayoutComponent } from './animations-layout/animations-layout.component';
+import { ReactiveColumnDirective } from './sharable/reactive-column.directive';
 
 export const animationsFeatureAnimationModuleRoutes: Routes = [
   // { path: '', redirectTo: '/animations-home', pathMatch: 'full' },
@@ -74,6 +75,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     SwarmParamComponent,
     ScrollComponent,
     ScrollParamComponent,
+    ReactiveColumnDirective,
   ],
   exports: [AnimationsLayoutComponent],
 })

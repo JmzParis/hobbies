@@ -1,23 +1,35 @@
 main {
-  div {
-    background: rgb(0, 71, 0);
+  background-color: black;
+  height:100vh;
+  nav {
+    div {
+      a:link,
+      a:visited {
+        background-color: rgb(129, 184, 129);
+        color: black;
+        border: 0.3rem solid green;
+        padding: 1rem 2rem;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.5rem;
+        display: block;
+      }
 
-    a:link,
-    a:visited {
-      background-color: rgb(129, 184, 129);
-      color: black;
-      border: 2px solid green;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 1.5rem;
-      display: block;
+      a:hover,
+      a:active {
+        background-color: green;
+        color: white;
+      }
     }
-
-    a:hover,
-    a:active {
+  }
+  section {
+    .anim-comtainer {
+      height: 20rem;
+      position: relative; // inside wrapper is absolute
+    }
+    .anim-border {
+      padding: 0.3rem;
       background-color: green;
-      color: white;
     }
   }
 }

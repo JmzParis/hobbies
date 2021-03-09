@@ -21,7 +21,7 @@ export const defaultGoldenSpiralUserParam = {
   angle: 137.5,
   sizeI: 0,
   sizeR: 50,
-  speedR: -0.05,
+  speedR: 0.0,
   speedG: 5,
   dr: 11, // 25,
   rStart: 0,

@@ -36,8 +36,8 @@ export class GoldenSpiralParamComponent {
     //this.param.angle = this.random(0,360,0.1);
     p.sizeI = this.random(0, 40, 10);
     p.sizeR = this.random(0, 40, 10);
-    p.speedR = this.random(-100, 100, 1);
-    p.speedG = this.random(-10, 10, 1);
+    p.speedR = this.random(-10, 10, 0.2);
+    p.speedG = this.random(-15, 15, 1);
     p.dr = this.random(10, 60, 1);
     p.rStart = this.random(-500, 500, 10);
     p.rEnd = this.random(-500, 500, 10);

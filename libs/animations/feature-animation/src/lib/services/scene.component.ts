@@ -3,9 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
   Input,
   NgZone,
   OnDestroy,
+  Renderer2,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -15,16 +17,16 @@ import { AnimationService } from '@hobbies/shared/util-drawing';
 import { DrawService, SceneService } from './scene.service';
 import { UserParam } from './scene-param';
 
-
 @Component({
   selector: 'jz-scene',
   templateUrl: './scene.component.html',
   styleUrls: ['./scene.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [SceneService],
 })
 export class SceneComponent implements AfterViewInit, OnDestroy {
   @Input() paramTemplate!: TemplateRef<unknown>;
-  @Input() userParam!: UserParam;
+  @Input() userParam!: UserParam;  
   @Input() drawService!: DrawService;
   @ViewChild('canvas') canvasRef!: ElementRef;
   private stopSubject = new Subject<boolean>();
@@ -42,19 +44,23 @@ export class SceneComponent implements AfterViewInit, OnDestroy {
   constructor(
     private animationService: AnimationService,
     private sceneService: SceneService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private renderer: Renderer2,
+    private elmRef: ElementRef
   ) {}
 
   initStopObservable() {
     this.stopSubject = new Subject<boolean>();
     this.stop$ = this.stopSubject.asObservable();
   }
-  ngAfterViewInit(): void {
+
+  ngAfterViewInit(): void {  
+    if(!this.canvasRef) return;
     const canvas = this.canvasRef.nativeElement;
     const canvasContext = canvas.getContext('2d') as CanvasRenderingContext2D;
     this.sceneService.init(canvasContext, this.drawService, this.userParam);
-    this.screenSize=`Window: ${window.innerWidth}x${window.innerHeight}`;
-   
+    this.screenSize = `Window: ${window.innerWidth}x${window.innerHeight}, canvas: ${canvas.width}x${canvas.height}`;
+
     this.onStart();
   }
 
@@ -91,6 +97,11 @@ export class SceneComponent implements AfterViewInit, OnDestroy {
     this.onStop();
     this.sceneService.restart();
     this.onStart();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.sceneService.resize();
   }
 
   ngOnDestroy() {

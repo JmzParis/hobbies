@@ -13,7 +13,7 @@ export interface DrawStyle {
 export class ColorService {
   private mode = 1;
   private alpha = 100.0;
-  private canvasContext: CanvasRenderingContext2D | null = null;
+  //private canvasContext: CanvasRenderingContext2D | null = null;
 
   private isTabInit = false;
   private tabFill = new Array<string>(360);
@@ -22,14 +22,14 @@ export class ColorService {
   private cGradient: CanvasGradient | null = null;
 
   public init(
-    canvasContext: CanvasRenderingContext2D,
+    c: CanvasRenderingContext2D,
     mode: number,
     alpha: number
   ) {
-    this.canvasContext = canvasContext;
+    //this.canvasContext = canvasContext;
     this.setModeAndAlpha(mode, alpha);
 
-    this.canvasContext.fillStyle = Color('hsla(360, 100%, 50%, 0.5)')
+    c.fillStyle = Color('hsla(360, 100%, 50%, 0.5)')
       .rgb()
       .string();
   }
@@ -43,13 +43,13 @@ export class ColorService {
     this.alpha = alpha;
   }
 
-  public setDefaultColors() {
-    const cc = this.canvasContext;
-    if (cc == null) return;
-    cc.lineWidth = 5;
-    //cc.fillStyle = '#05a505';
-    cc.fillStyle = 'chartreuse';
-    cc.strokeStyle = '#005010';
+  public setDefaultColors(c: CanvasRenderingContext2D) {
+    //const c = this.canvasContext;
+    //if (c == null) return;
+    c.lineWidth = 5;
+    //c.fillStyle = '#05a505';
+    c.fillStyle = 'chartreuse';
+    c.strokeStyle = '#005010';
   }
 
   public getRandomStyle(): DrawStyle {
@@ -62,16 +62,16 @@ export class ColorService {
     } as DrawStyle;
   }
 
-  public setDrawStyle(style: DrawStyle) {
-    const cc = this.canvasContext;
-    if (cc == null) return;
-    cc.fillStyle = style.fillStyle;
-    cc.strokeStyle = style.strokeStyle;
+  public setDrawStyle(c: CanvasRenderingContext2D, style: DrawStyle) {
+    //const c = this.canvasContext;
+    //if (c == null) return;
+    c.fillStyle = style.fillStyle;
+    c.strokeStyle = style.strokeStyle;
   }
 
-  public setColors(a: number) {
-    const cc = this.canvasContext;
-    if (cc == null) return;
+  public setColors(c: CanvasRenderingContext2D, a: number) {
+    //const cc = this.canvasContext;
+    //if (cc == null) return;
     if (this.mode <= 4) {
       //this.canvasContext.lineWidth = 1;
       if (!this.isTabInit) {
@@ -85,99 +85,99 @@ export class ColorService {
 
         this.isTabInit = true;
       }
-      const c = Math.round(Math.abs(a / this.mode) % 360);
+      const d = Math.round(Math.abs(a / this.mode) % 360);
       // console.log(`${c}=>${this.tabFill[c]}`)
-      cc.fillStyle = this.tabFill[c];
-      cc.strokeStyle = this.tabStroke[c];
+      c.fillStyle = this.tabFill[d];
+      c.strokeStyle = this.tabStroke[d];
     } else if (this.mode === 5) {
       //Red
-      cc.lineWidth = 2;
-      const c = Math.abs(a / 2) % 255;
-      const color = Color({ r: c, g: 0, b: 0 }).alpha(this.alpha / 100.0);
-      cc.fillStyle = color.toString();
-      cc.strokeStyle = color.darken(0.5).toString();
+      c.lineWidth = 2;
+      const d = Math.abs(a / 2) % 255;
+      const color = Color({ r: d, g: 0, b: 0 }).alpha(this.alpha / 100.0);
+      c.fillStyle = color.toString();
+      c.strokeStyle = color.darken(0.5).toString();
     } else if (this.mode === 6) {
       //Green
-      cc.lineWidth = 2;
-      const c = Math.abs(a / 2) % 255;
-      const color = Color({ r: 0, g: c, b: 0 }).alpha(this.alpha / 100.0);
-      cc.fillStyle = color.toString();
-      cc.strokeStyle = color.darken(0.5).toString();
+      c.lineWidth = 2;
+      const d = Math.abs(a / 2) % 255;
+      const color = Color({ r: 0, g: d, b: 0 }).alpha(this.alpha / 100.0);
+      c.fillStyle = color.toString();
+      c.strokeStyle = color.darken(0.5).toString();
     } else if (this.mode === 7) {
       //Blue
-      cc.lineWidth = 2;
-      const c = Math.abs(a / 2) % 255;
-      const color = Color({ r: 0, g: 0, b: c }).alpha(this.alpha / 100.0);
-      cc.fillStyle = color.toString();
-      cc.strokeStyle = color.darken(0.5).toString();
+      c.lineWidth = 2;
+      const d = Math.abs(a / 2) % 255;
+      const color = Color({ r: 0, g: 0, b: d }).alpha(this.alpha / 100.0);
+      c.fillStyle = color.toString();
+      c.strokeStyle = color.darken(0.5).toString();
     } else if (this.mode === 8) {
-      cc.lineWidth = 2;
-      const c = Math.abs(a / 2) % 255;
-      const color = Color({ r: c, g: c, b: c }).alpha(this.alpha / 100.0);
-      cc.fillStyle = color.toString();
-      cc.strokeStyle = color.darken(0.5).toString();
+      c.lineWidth = 2;
+      const d = Math.abs(a / 2) % 255;
+      const color = Color({ r: c, g: d, b: c }).alpha(this.alpha / 100.0);
+      c.fillStyle = color.toString();
+      c.strokeStyle = color.darken(0.5).toString();
     } else if (this.mode === 9) {
-      cc.lineWidth = 2;
-      const c = Math.abs(a / 2) % 255;
-      const color = Color({ r: c, g: c / 2, b: 0 }).alpha(this.alpha / 100.0);
-      cc.fillStyle = color.toString();
-      cc.strokeStyle = color.darken(0.5).toString();
+      c.lineWidth = 2;
+      const d = Math.abs(a / 2) % 255;
+      const color = Color({ r: c, g: d / 2, b: 0 }).alpha(this.alpha / 100.0);
+      c.fillStyle = color.toString();
+      c.strokeStyle = color.darken(0.5).toString();
     } else if (this.mode === 10) {
-      cc.lineWidth = 2;
-      const c = Math.abs(a / 2) % 360;
+      c.lineWidth = 2;
+      const d = Math.abs(a / 2) % 360;
       const color = Color('hsla(360, 100%, 50%, 0.5)')
-        .hue(c)
+        .hue(d)
         .alpha(this.alpha / 100.0);
-      cc.fillStyle = color.alpha(0).toString();
-      cc.strokeStyle = color.toString();
+      c.fillStyle = color.alpha(0).toString();
+      c.strokeStyle = color.toString();
     } else if (this.mode === 11) {
-      cc.lineWidth = 2;
-      const c = Math.abs(a / 2) % 360;
+      c.lineWidth = 2;
+      const d = Math.abs(a / 2) % 360;
       const color = Color('hsla(360, 100%, 50%, 0.5)')
-        .hue(c)
+        .hue(d)
         .alpha(this.alpha / 100.0);
-      cc.fillStyle = '#000000';
-      cc.strokeStyle = color.toString();
+      c.fillStyle = '#000000';
+      c.strokeStyle = color.toString();
     }
   }
 
-  public background(bgMode: number, fromDraw: boolean) {
+  public background(c: CanvasRenderingContext2D, bgMode: number, fromDraw: boolean) {
     if (fromDraw && bgMode <= 1) return;
 
-    const cc = this.canvasContext;
-    if (cc == null) return;
+    //const cc = this.canvasContext;
+    //if (cc == null) return;
 
     let color: Color;
     switch (bgMode) {
       case 0:
-        cc.fillStyle = '#000000';
+        c.fillStyle = '#000000';
         break;
       case 1:
-        cc.fillStyle = '#FFFFFF';
+        c.fillStyle = '#FFFFFF';
         break;
       case 2:
-        cc.fillStyle = '#000000';
+        c.fillStyle = '#000000';
         break;
       case 3:
-        cc.fillStyle = '#FFFFFF';
+        c.fillStyle = '#FFFFFF';
         break;
       case 4:
-        cc.fillStyle = this.createGradient(cc);
+        c.fillStyle = this.createGradient(c);
         break;
       case 5:
         color = Color('hsla(360, 0%, 0%, 0.5)').alpha(20 / 100.0);
-        cc.fillStyle = color.rgb().string();
+        c.fillStyle = color.rgb().string();
         break;
       case 6:
         color = Color('hsla(360, 0%, 0%, 0.5)').alpha(7 / 100.0);
-        cc.fillStyle = color.rgb().string();
+        c.fillStyle = color.rgb().string();
         break;
       case 7:
         color = Color('hsla(360, 0%, 0%, 0.5)').alpha(3 / 100.0);
-        cc.fillStyle = color.rgb().string();
+        c.fillStyle = color.rgb().string();
         break;
       case 8:
-        cc.fillStyle = '#000000BB';
+        c.fillStyle = '#000000BB';
         break;
       /* case 9:
         cc.drawImage(
@@ -189,14 +189,14 @@ export class ColorService {
         )*/
     }
 
-    if (bgMode !== 9) cc.fillRect(0, 0, cc.canvas.width, cc.canvas.height);
+    if (bgMode !== 9) c.fillRect(0, 0, c.canvas.width, c.canvas.height);
   }
 
-  private createGradient(cc: CanvasRenderingContext2D): CanvasGradient {
+  private createGradient(c: CanvasRenderingContext2D): CanvasGradient {
     if (this.cGradient) return this.cGradient;
-    const cx = cc.canvas.width / 2;
-    const cy = cc.canvas.height / 2;
-    const grd = cc.createRadialGradient(cx, cy, 5, cx, cy, (cx + cy) / 2);
+    const cx = c.canvas.width / 2;
+    const cy = c.canvas.height / 2;
+    const grd = c.createRadialGradient(cx, cy, 5, cx, cy, (cx + cy) / 2);
     grd.addColorStop(0, '#00000000');
     grd.addColorStop(1, '#000000BB');
     this.cGradient = grd;

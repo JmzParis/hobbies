@@ -63,7 +63,7 @@ export class GoldenSpiralService implements DrawService {
     //const drawFx = this.spriteDrawService.drawLeaf;
     if (rStart < rEnd) {
       for (let r = rStart; r < rEnd; r += dr) {
-        this.colorService.setColors(a);
+        this.colorService.setColors(c, a);
         const rx = (0.5 + cx + r * Math.sin(a)) << 0;
         const ry = (0.5 + cy + r * Math.cos(a)) << 0;
         const size = (0.5 + sizeConst + Math.sqrt(Math.abs(r)) * sizeR2) << 0;
@@ -73,7 +73,7 @@ export class GoldenSpiralService implements DrawService {
       }
     } else {
       for (let r = rStart; rEnd < r; r -= dr) {
-        this.colorService.setColors(a);
+        this.colorService.setColors(c, a);
         const rx = (0.5 + cx + r * Math.sin(a)) << 0;
         const ry = (0.5 + cy + r * Math.cos(a)) << 0;
         const size = (0.5 + sizeConst + Math.sqrt(Math.abs(r)) * sizeR2) << 0;

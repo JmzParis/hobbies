@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ColorService } from '@hobbies/shared/util-drawing';
 import { AnimationParam, UserParam } from './scene-param';
 
@@ -9,18 +8,13 @@ export interface DrawService {
   restart(fullParam: AnimationParam): void;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
-export abstract class SceneService {
+@Injectable()
+export class SceneService {
   private fullParam!: AnimationParam;
   private drawService!: DrawService;
   public screenSize = '';
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private colorService: ColorService
-  ) {}
+  constructor(private colorService: ColorService) {}
 
   init(
     canvasContext: CanvasRenderingContext2D,
@@ -44,40 +38,41 @@ export abstract class SceneService {
       fullParam.userParam.colorMode,
       10
     );
-    this.colorService.background(fullParam.userParam.bgMode, false);
+    this.setBackground(false);
   }
 
   public draw(delay: number): void {
-    this.colorService.background(this.fullParam.userParam.bgMode, true);
+    this.setBackground(true);
     this.drawService.draw(delay, this.fullParam);
   }
 
   public restart(): void {
     this.resize();
-    this.colorService.background(this.fullParam.userParam.bgMode, false);
+    this.background();
+    this.setBackground(false);
     this.drawService.restart(this.fullParam);
   }
 
   public resize(): void {
     const canvas = this.fullParam.canvasContext.canvas;
-    //canvas.width = window.innerWidth;
-    //canvas.height = window.innerHeight;
-    const docElement = this.document.documentElement;
-    canvas.width = docElement.clientWidth;
-    canvas.height = docElement.clientHeight;
-
-    this.fullParam.canvasContext.scale(1, 1);
-
+    const wrapper = canvas.parentElement;
+    if (wrapper) {
+      canvas.width = wrapper.clientWidth;
+      canvas.height = wrapper.clientHeight;
+    }
     this.fullParam.centerx = (0.5 + canvas.width / 2) << 0;
     this.fullParam.centery = (0.5 + canvas.height / 2) << 0;
-    console.log(`Window: ${window.innerWidth}x${window.innerHeight}`);
-    console.log(`Client: ${docElement.clientWidth}x${docElement.clientHeight}`);
-    console.log(`canvas: ${canvas.width}x${canvas.height}`);
-    //console.log(`center: ${this.fullParam.centerx}x${this.fullParam.centery}`);
+    //console.log(`Window: ${window.innerWidth}x${window.innerHeight}`);
+    //console.log(`Canvas: ${canvas.width}x${canvas.height}`);
   }
 
   protected background(): void {
-    //this.resize();
-    this.colorService.background(this.fullParam.userParam.bgMode, false);
+    this.setBackground(false);
+  }
+
+  private setBackground(fromDraw: boolean): void {
+    const c = this.fullParam.canvasContext;
+    const userParam = this.fullParam.userParam;
+    this.colorService.background(c, userParam.bgMode, fromDraw);
   }
 }

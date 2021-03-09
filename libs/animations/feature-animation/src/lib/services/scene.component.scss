@@ -1,26 +1,9 @@
-section {
-    margin: 0;
-    padding: 0;    
-    background-color: black;
-    h1 {
-        background-color: black;
-        color: sandybrown;
-    }
-    canvas {
-        position: absolute; 
-        width: 100%;
-        height: 100%;
-        overflow: hidden
-    }
-    button {
-        position:absolute; top:0; left:0;
-        margin:0;
-        padding: 0;
-        background-color: rgb(93, 47, 15);
-        color: white;
-        font-size: x-large;
-        border: 0;        
-        width: 4%;
-        height: 4%;
-    }
+ .wrapper {
+    width: 100%;
+    height: 100%;
+    position:absolute; // Container should have position: relative;
+    canvas {        
+       width: 100%;
+       height: 100%;
+    } 
 }

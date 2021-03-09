@@ -16,13 +16,17 @@ const defaultImageBlock = {
 export class ImageStoreService {
   blocs: { [Key: string]: ImageBlock } = {};
 
-  public load(name: string, pictureNames: string[]): ImageBlock {
+  public load(keyName: string, pictureNames: string[]): ImageBlock {
     const newBloc = { ...defaultImageBlock } as ImageBlock;
-    const imageArray = newBloc.images;
+    const imageArray = new Array<HTMLImageElement>(pictureNames.length);
+    newBloc.images = imageArray;
+
+    let i = 0;
     for (const picName of pictureNames) {
-      imageArray[imageArray.length] = this.loadImage(picName);
+      // console.log(`Start loading ${keyName}: ${picName}`);
+      imageArray[i++] = this.loadImage(picName);
     }
-    this.blocs[name] = newBloc;
+    this.blocs[keyName] = newBloc;
     return newBloc;
   }
 
@@ -34,18 +38,18 @@ export class ImageStoreService {
   }
   //private onImageLoaded(img: HTMLImageElement): void {}
 
-  public areAllImageLoaded(name: string): boolean {
+  public areAllImageLoaded(keyName: string): boolean {
     // console.log(`ImageBlocs["${name}"].test()`);
-    const imageBlock = this.blocs[name];
+    const imageBlock = this.blocs[keyName];
     if (imageBlock.imgLoaded) return true;
     for (const image of imageBlock.images) {
       if (!image.complete) {
-        console.log(`ImageBlocs["${name}"].image[${image.src}] still not complete`);
+        // console.log(`ImageBlocs["${keyName}"].image[${image.src}] still not complete`);
         return false;
-      }      
+      }
     }
     imageBlock.imgLoaded = true;
-    console.log(`ImageBlocs["${name}"] is now completed`);
+    //console.log(`ImageBlocs["${keyName}"] is now completed ${imageBlock.images.length}`);
     return true;
   }
 
