@@ -12,13 +12,30 @@
             "enforceBuildableLibDependency": true,
             "allow": [],
             "depConstraints": [
-              // { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] },
-              { "sourceTag": "scope:memory", "onlyDependOnLibsWithTags": ["scope:memory", "scope:shared"] },
-              { "sourceTag": "scope:animation", "onlyDependOnLibsWithTags": ["scope:animation", "scope:shared"] },
-              { "sourceTag": "scope:shared", "onlyDependOnLibsWithTags": ["scope:shared"] },
-              { "sourceTag": "type:app", "onlyDependOnLibsWithTags": ["type:feature"] },
-              { "sourceTag": "type:feature", "onlyDependOnLibsWithTags": ["type:feature", "type:util"] },
-              { "sourceTag": "type:util", "onlyDependOnLibsWithTags": ["type:util"] }
+              {
+                "sourceTag": "scope:memory",
+                "onlyDependOnLibsWithTags": ["scope:memory", "scope:shared"]
+              },
+              {
+                "sourceTag": "scope:animation",
+                "onlyDependOnLibsWithTags": ["scope:animation", "scope:shared"]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:feature"]
+              },
+              {
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": ["type:feature", "type:util"]
+              },
+              {
+                "sourceTag": "type:util",
+                "onlyDependOnLibsWithTags": ["type:util"]
+              }
             ]
           }
         ]
@@ -27,7 +44,6 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "parserOptions": { "project": "./tsconfig.*?.json" },
       "rules": {}
     },
     {
