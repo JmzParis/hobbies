@@ -19,7 +19,7 @@ export const defaultGoldenSpiralUserParam = {
   drawing: 'circle',
 
   angle: 137.5,
-  sizeI: 0,
+  sizeI: 1,
   sizeR: 50,
   speedR: 0.0,
   speedG: 5,

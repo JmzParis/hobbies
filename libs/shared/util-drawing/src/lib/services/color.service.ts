@@ -113,13 +113,13 @@ export class ColorService {
     } else if (this.mode === 8) {
       c.lineWidth = 2;
       const d = Math.abs(a / 2) % 255;
-      const color = Color({ r: c, g: d, b: c }).alpha(this.alpha / 100.0);
+      const color = Color({ r: d, g: d, b: d }).alpha(this.alpha / 100.0);
       c.fillStyle = color.toString();
       c.strokeStyle = color.darken(0.5).toString();
     } else if (this.mode === 9) {
       c.lineWidth = 2;
       const d = Math.abs(a / 2) % 255;
-      const color = Color({ r: c, g: d / 2, b: 0 }).alpha(this.alpha / 100.0);
+      const color = Color({ r: d, g: d / 2, b: 0 }).alpha(this.alpha / 100.0);
       c.fillStyle = color.toString();
       c.strokeStyle = color.darken(0.5).toString();
     } else if (this.mode === 10) {
