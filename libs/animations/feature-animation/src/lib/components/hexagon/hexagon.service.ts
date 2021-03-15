@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Draw3dService } from '../../services/scene-model';
 import { HexagonParam, HexagonUserParam } from './hexagon-param';
 import * as THREE from 'three';
-import { Scene3dRotationService } from '../../services/scene3drotation.service';
 
 const sin6 = Math.sin(Math.PI / 3.0);
 const cos6 = Math.cos(Math.PI / 3.0);
@@ -27,7 +26,6 @@ export class HexagonService implements Draw3dService {
 
   public draw(delay: number, fullParam: HexagonParam): void {
     const rotationService = fullParam.sceneRotationService;
-    //const hexagonUserParam = fullParam.userParam as HexagonUserParam;
     this.group.rotation.y +=
       (rotationService.targetRotationy - this.group.rotation.y) * 0.05;
     this.group.rotation.x +=
@@ -48,19 +46,6 @@ export class HexagonService implements Draw3dService {
     this.renderer.setSize(width, height);
   }
 
-  private pavage63(group: THREE.Group, mesh: THREE.Mesh, r: number, n: number) {
-    const xd = r * (1 + cos6);
-    const yd = 2 * r * sin6;
-    for (let i = -n; i <= n; i++) {
-      const shift = (i % 2) * sin6 * r;
-      for (let j = -n; j <= n; j++) {
-        const clone = mesh.clone();
-        clone.position.set(i * xd, j * yd + shift, 0);
-        group.add(clone);
-      }
-    }
-  }
-
   private buildRenderer(fullParam: HexagonParam): THREE.WebGLRenderer {
     const canvas = fullParam.canvas;
 
@@ -75,6 +60,7 @@ export class HexagonService implements Draw3dService {
   }
 
   private createScene(fullParam: HexagonParam): void {
+    const userParam = fullParam.userParam as HexagonUserParam;
     const canvas = fullParam.canvas;
     this.scene = new THREE.Scene();
     //this.scene.background = new THREE.Color(0x505050);
@@ -130,12 +116,25 @@ export class HexagonService implements Draw3dService {
     this.group = new THREE.Group();
     // this.group.position.y = 50;
     r = 0.5;
-    this.pavage63(this.group, mesh, r, 2);
+    this.pavage63(this.group, mesh, r, userParam.concentricHexaCount);
 
     this.group.add(this.cube);
     this.scene.add(this.group);
   }
 
+  private pavage63(group: THREE.Group, mesh: THREE.Mesh, r: number, n: number) {
+    const xd = r * (1 + cos6);
+    const yd = 2 * r * sin6;
+    for (let i = -n; i <= n; i++) {
+      const shift = (i % 2) * sin6 * r;
+      for (let j = -n; j <= n; j++) {
+        const clone = mesh.clone();
+        clone.position.set(i * xd, j * yd + shift, 0);
+        group.add(clone);
+      }
+    }
+  }
+  
   private buildHexagonShape(x: number, y: number, r: number): THREE.Shape {
     return new THREE.Shape()
       .moveTo(x - r * cos6, y + r * sin6)

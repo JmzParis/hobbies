@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { defaultOrbitUserParam } from '../orbit/orbit-param';
-import { HexagonUserParam } from './hexagon-param';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
+import { defaultHexagonUserParam, HexagonUserParam } from './hexagon-param';
 import { HexagonService } from './hexagon.service';
 
 @Component({
@@ -14,9 +17,9 @@ import { HexagonService } from './hexagon.service';
       [drawService]="drawService"
     ></jz-scene3d>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class HexagonComponent {
-  userParam = { ...defaultOrbitUserParam } as HexagonUserParam;
+  userParam = { ...defaultHexagonUserParam } as HexagonUserParam;
   constructor(public drawService: HexagonService) {}
 }

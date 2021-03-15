@@ -1,27 +1,8 @@
 <section class='main'>
-    <section class="p-grid p-justify-even">
-        <label class="p-col-4">Background:</label>
-        <p-dropdown class="p-col-8" [options]="bgModes" [(ngModel)]="userParam.bgMode" optionLabel="title" optionValue="value"></p-dropdown>    
-        <br/>
-    </section>
-    <hr/>
     <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
     <br/>
     <br/>
-    <label>Corps count: {{userParam.corpsCount}}</label>
-    <p-slider [(ngModel)]="userParam.corpsCount" [min]="2" [max]="200" [step]="1"></p-slider>
+    <label>Concentric Hexa count: {{userParam.concentricHexaCount}}</label>
+    <p-slider [(ngModel)]="userParam.concentricHexaCount" [min]="0" [max]="10" [step]="1"></p-slider>
     <br/>
-
-    <label>Max mass: {{userParam.maxMass}}</label>
-    <p-slider [(ngModel)]="userParam.maxMass" [min]="1" [max]="40" [step]="1"></p-slider>
-    <br/>
- 
-    <label>Speed factor: {{userParam.speedFactor}}</label>
-    <p-slider [(ngModel)]="userParam.speedFactor" [min]="1" [max]="200" [step]="1"></p-slider>
-    <br/>
-
-    <label>Gravity: {{userParam.gravity}}</label>
-    <p-slider [(ngModel)]="userParam.gravity" [min]="-1" [max]="1" [step]="0.1"></p-slider>
-    <br/>
-
 </section>
