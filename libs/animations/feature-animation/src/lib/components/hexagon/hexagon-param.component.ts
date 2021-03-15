@@ -4,16 +4,15 @@ import {
   confColorModes,
   confDrawings,
 } from '../../services/scene-model';
-
-import { OrbitUserParam } from './orbit-param';
+import { HexagonUserParam } from './hexagon-param';
 
 @Component({
-  selector: 'jz-orbit-param',
-  templateUrl: './orbit-param.component.html',
+  selector: 'jz-hexagon-param',
+  templateUrl: './hexagon-param.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrbitParamComponent {
-  @Input() userParam!: OrbitUserParam;
+export class HexagonParamComponent {
+  @Input() userParam!: HexagonUserParam;
   colorModes = confColorModes;
   drawings = confDrawings;
   bgModes = confBackgroundModes;

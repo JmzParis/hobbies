@@ -3,7 +3,7 @@ import {
   confBackgroundModes,
   confColorModes,
   confDrawings,
-} from '../../services/scene-param';
+} from '../../services/scene-model';
 
 import { ScrollUserParam } from './scroll-param';
 

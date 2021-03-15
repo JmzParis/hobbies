@@ -3,32 +3,32 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostListener,
   Input,
   NgZone,
   OnDestroy,
-  Renderer2,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { AnimationService } from '@hobbies/shared/util-drawing';
-import { SceneService } from './scene.service';
-import { DrawService, UserParam } from './scene-model';
+import { Draw3dService, UserParam } from './scene-model';
+import { Scene3dService } from './scene3d.service';
+import { Scene3dRotationService } from './scene3drotation.service';
 
 @Component({
-  selector: 'jz-scene',
+  selector: 'jz-scene3d',
   templateUrl: './scene.component.html',
   styleUrls: ['./scene.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SceneService],
+  providers: [Scene3dService, Scene3dRotationService],
 })
-export class SceneComponent implements AfterViewInit, OnDestroy {
+export class Scene3dComponent implements AfterViewInit, OnDestroy {
   @Input() paramTemplate!: TemplateRef<unknown>;
-  @Input() userParam!: UserParam;  
-  @Input() drawService!: DrawService;
+  @Input() userParam!: UserParam;
+  @Input() drawService!: Draw3dService;
   @ViewChild('canvas') canvasRef!: ElementRef;
+
   private stopSubject = new Subject<boolean>();
   private stop$ = this.stopSubject.asObservable();
   private delaySubject = new Subject<number>();
@@ -38,15 +38,15 @@ export class SceneComponent implements AfterViewInit, OnDestroy {
   private lastDelay = 0;
   private fpsAcc = new Array<number>(10);
   private fpsIndex = 0;
+
   public screenSize = '';
   leftSidebarVisible = false;
 
   constructor(
     private animationService: AnimationService,
-    private sceneService: SceneService,
+    private sceneService: Scene3dService,
+    private sceneRotationService: Scene3dRotationService,
     private ngZone: NgZone,
-    private renderer: Renderer2,
-    private elmRef: ElementRef
   ) {}
 
   initStopObservable() {
@@ -54,20 +54,41 @@ export class SceneComponent implements AfterViewInit, OnDestroy {
     this.stop$ = this.stopSubject.asObservable();
   }
 
-  ngAfterViewInit(): void {  
-    if(!this.canvasRef) return;
-    const canvas = this.canvasRef.nativeElement;    
-    this.sceneService.init(canvas, this.drawService, this.userParam);
+  ngAfterViewInit(): void {
+    if (!this.canvasRef) return;
+    const canvas = this.canvasRef.nativeElement;
+    this.sceneRotationService.init(canvas);
+    this.sceneService.init(canvas, this.drawService, this.userParam, this.sceneRotationService);
     this.screenSize = `Window: ${window.innerWidth}x${window.innerHeight}, canvas: ${canvas.width}x${canvas.height}`;
 
     this.onStart();
   }
 
   onStart(): void {
+    /*
     // this.ngZone.runOutsideAngular(() => {
     this.initStopObservable();
     this.animationService.animate(this.stop$, this.draw.bind(this));
     // });
+    */
+    // We have to run this outside angular zones,
+    // because it could trigger heavy changeDetection cycles.
+    this.ngZone.runOutsideAngular(() => {
+      this.initStopObservable();
+      if (document.readyState !== 'loading') {
+        //this.render();
+        this.animationService.animate(this.stop$, this.draw.bind(this));
+      } else {
+        window.addEventListener('DOMContentLoaded', () => {
+          //this.render();
+          this.animationService.animate(this.stop$, this.draw.bind(this));
+        });
+      }
+      this.sceneRotationService.addEventListeners();
+      window.addEventListener('resize', () => {
+        this.resize();
+      });
+    });    
   }
 
   private displayFps(delay: number) {
@@ -98,8 +119,15 @@ export class SceneComponent implements AfterViewInit, OnDestroy {
     this.onStart();
   }
 
+  /*
   @HostListener('window:resize')
   onResize() {
+    this.sceneService.resize();
+  }
+  */
+  
+  resize() {
+    this.sceneRotationService.resize();
     this.sceneService.resize();
   }
 

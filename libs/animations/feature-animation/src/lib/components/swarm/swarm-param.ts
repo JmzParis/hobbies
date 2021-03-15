@@ -1,4 +1,4 @@
-import { AnimationParam, UserParam, defaultUserParam } from '../../services/scene-param';
+import { AnimationParam, UserParam, defaultUserParam } from '../../services/scene-model';
 
 export interface SwarmUserParam extends UserParam {
   familyCount: number;

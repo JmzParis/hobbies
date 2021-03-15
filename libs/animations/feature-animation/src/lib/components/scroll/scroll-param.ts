@@ -1,4 +1,4 @@
-import { AnimationParam, defaultUserParam, UserParam } from '../../services/scene-param';
+import { AnimationParam, defaultUserParam, UserParam } from '../../services/scene-model';
 
 export interface ScrollUserParam extends UserParam {
   imgBack: number;

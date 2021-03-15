@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ColorService } from '@hobbies/shared/util-drawing';
-import { AnimationParam, UserParam } from './scene-param';
+import { AnimationParam, DrawService, UserParam } from './scene-model';
 
-export interface DrawService {
-  init(fullParam: AnimationParam): void;
-  draw(delay: number, fullParam: AnimationParam): void;
-  restart(fullParam: AnimationParam): void;
-}
 
 @Injectable()
 export class SceneService {
@@ -17,10 +12,11 @@ export class SceneService {
   constructor(private colorService: ColorService) {}
 
   init(
-    canvasContext: CanvasRenderingContext2D,
+    canvas: HTMLCanvasElement,    
     drawService: DrawService,
     userParam: UserParam
   ): void {
+    const canvasContext = canvas.getContext('2d') as CanvasRenderingContext2D;
     const fullParam = {
       userParam: userParam,
       centerx: 0,
@@ -31,8 +27,7 @@ export class SceneService {
 
     this.drawService = drawService;
     this.resize();
-    this.drawService.init(fullParam);
-    this.colorService;
+    this.drawService.init(fullParam);    
     this.colorService.init(
       fullParam.canvasContext,
       fullParam.userParam.colorMode,
@@ -48,7 +43,6 @@ export class SceneService {
 
   public restart(): void {
     this.resize();
-    this.background();
     this.setBackground(false);
     this.drawService.restart(this.fullParam);
   }
@@ -64,10 +58,6 @@ export class SceneService {
     this.fullParam.centery = (0.5 + canvas.height / 2) << 0;
     //console.log(`Window: ${window.innerWidth}x${window.innerHeight}`);
     //console.log(`Canvas: ${canvas.width}x${canvas.height}`);
-  }
-
-  protected background(): void {
-    this.setBackground(false);
   }
 
   private setBackground(fromDraw: boolean): void {

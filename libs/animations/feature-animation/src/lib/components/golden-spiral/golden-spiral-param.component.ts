@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { confColorModes, confDrawings } from '../../services/scene-param';
+import { confColorModes, confDrawings } from '../../services/scene-model';
 import { GoldenSpiralUserParam } from './golden-spiral-param';
 
 @Component({

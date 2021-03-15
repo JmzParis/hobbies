@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Mover, Space, Vector } from '@hobbies/shared/util-kinetic';
 import { SwarmParam, SwarmUserParam } from './swarm-param';
-import { DrawService } from '../../services/scene.service';
 import { ImageStoreService } from '@hobbies/shared/util-drawing';
-import { ImageBlock } from 'libs/shared/util-drawing/src/lib/services/image-store.service';
+import { DrawService } from '../../services/scene-model';
 
 interface MoverParam {
   img: HTMLImageElement;

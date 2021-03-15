@@ -1,5 +1,9 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { confBackgroundModes, confColorModes, confDrawings } from '../../services/scene-param';
+import {
+  confBackgroundModes,
+  confColorModes,
+  confDrawings,
+} from '../../services/scene-model';
 
 import { SwarmUserParam } from './swarm-param';
 
@@ -17,7 +21,7 @@ export class SwarmParamComponent {
   onRandom(): void {
     const p = this.userParam;
     p.familyCount = this.random(1, 8, 1);
-    p.familySize = this.random(2, 200, 1);    
+    p.familySize = this.random(2, 200, 1);
     p.gravity = this.random(0.1, 1, 0.05);
   }
 

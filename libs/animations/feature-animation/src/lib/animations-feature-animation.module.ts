@@ -14,6 +14,9 @@ import { SliderModule } from 'primeng/slider';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { SceneComponent } from './services/scene.component';
+import { AnimationsLayoutComponent } from './animations-layout/animations-layout.component';
+import { ReactiveColumnDirective } from './sharable/reactive-column.directive';
+
 import { GoldenDoubleSpiralComponent } from './components/golden-spiral/golden-double-spiral.component';
 import { GoldenSpiralComponent } from './components/golden-spiral/golden-spiral.component';
 import { GoldenSpiralParamComponent } from './components/golden-spiral/golden-spiral-param.component';
@@ -25,11 +28,12 @@ import { SwarmComponent } from './components/swarm/swarm.component';
 import { SwarmParamComponent } from './components/swarm/swarm-param.component';
 import { ScrollComponent } from './components/scroll/scroll.component';
 import { ScrollParamComponent } from './components/scroll/scroll-param.component';
-import { AnimationsLayoutComponent } from './animations-layout/animations-layout.component';
-import { ReactiveColumnDirective } from './sharable/reactive-column.directive';
+import { HexagonComponent } from './components/hexagon/hexagon.component';
+import { HexagonParamComponent } from './components/hexagon/hexagon-param.component';
+import { Scene3dComponent } from './services/scene3d.component';
 
 export const animationsFeatureAnimationModuleRoutes: Routes = [
-  // { path: '', redirectTo: '/animations-home', pathMatch: 'full' },
+  //{ path: '', pathMatch: 'full', component: HexagonComponent },
   { path: '', pathMatch: 'full', component: AnimationsLayoutComponent },
   { path: 'spiral', component: GoldenSpiralComponent },
   { path: 'doublespiral', component: GoldenDoubleSpiralComponent },
@@ -37,13 +41,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
   { path: 'skin', component: SkinComponent },
   { path: 'swarm', component: SwarmComponent },
   { path: 'scroll', component: ScrollComponent },
-  //{ path: '**', redirectTo: '' }
-  /*
-  { path: 'hexagon', component: animationsLib.HexagonComponent },
-  */
-  /*
-  { path: '**', redirectTo: '/home' }
-  */
+  { path: 'hexagon', component: HexagonComponent },
 ];
 
 @NgModule({
@@ -64,6 +62,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
   declarations: [
     AnimationsLayoutComponent,
     SceneComponent,
+    Scene3dComponent,
     GoldenSpiralComponent,
     GoldenDoubleSpiralComponent,
     GoldenSpiralParamComponent,
@@ -75,6 +74,8 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     SwarmParamComponent,
     ScrollComponent,
     ScrollParamComponent,
+    HexagonComponent,
+    HexagonParamComponent,
     ReactiveColumnDirective,
   ],
   exports: [AnimationsLayoutComponent],

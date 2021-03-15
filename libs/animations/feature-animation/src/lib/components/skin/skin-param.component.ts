@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { confBackgroundModes, confColorModes, confDrawings } from '../../services/scene-param';
+import { confBackgroundModes, confColorModes, confDrawings } from '../../services/scene-model';
 import { SkinUserParam } from './skin-param';
 
 @Component({

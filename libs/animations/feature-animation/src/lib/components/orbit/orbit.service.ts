@@ -5,7 +5,7 @@ import {
   SpriteDrawService,
 } from '@hobbies/shared/util-drawing';
 import { Mover, Space, Vector, SpaceType } from '@hobbies/shared/util-kinetic';
-import { DrawService } from '../../services/scene.service';
+import { DrawService } from '../../services/scene-model';
 import { OrbitParam, OrbitUserParam } from './orbit-param';
 
 @Injectable({

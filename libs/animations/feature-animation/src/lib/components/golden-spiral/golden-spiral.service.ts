@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Injectable } from '@angular/core';
 import { ColorService, SpriteDrawService } from '@hobbies/shared/util-drawing';
-import { DrawService } from '../../services/scene.service';
-
+import { DrawService } from '../../services/scene-model';
 import {
   GoldenSpiralParam,
   GoldenSpiralUserParam,

@@ -1,7 +1,7 @@
-import { AnimationParam, defaultUserParam, UserParam } from '../../services/scene-model';
+import { Animation3dParam, defaultUserParam, UserParam } from '../../services/scene-model';
 
 
-export interface OrbitUserParam extends UserParam {
+export interface HexagonUserParam extends UserParam {
   drawing: string;
 
   corpsCount: number;
@@ -12,7 +12,7 @@ export interface OrbitUserParam extends UserParam {
   gravity:number,
 }
 
-export const defaultOrbitUserParam = {
+export const defaultHexagonUserParam = {
   ...defaultUserParam,
   drawing: 'circle',
 
@@ -20,9 +20,9 @@ export const defaultOrbitUserParam = {
   maxMass: 8,
   speedFactor: 60,
   gravity: 0.45,
-} as OrbitUserParam;
+} as HexagonUserParam;
 
-export interface OrbitParam extends AnimationParam {
+export interface HexagonParam extends Animation3dParam {
   stuff: number;
 }
   

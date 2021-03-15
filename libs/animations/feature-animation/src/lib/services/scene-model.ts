@@ -1,3 +1,5 @@
+import { Scene3dRotationService } from './scene3drotation.service';
+
 export const confColorModes = [
   { value: 1, title: 'Mode1' },
   { value: 2, title: 'Mode2' },
@@ -45,4 +47,24 @@ export interface AnimationParam {
   centery: number;
   canvasContext: CanvasRenderingContext2D;
   userParam: UserParam;
+}
+
+export interface Animation3dParam {
+  centerx: number;
+  centery: number;
+  canvas: HTMLCanvasElement;
+  userParam: UserParam;
+  sceneRotationService: Scene3dRotationService;
+}
+
+export interface DrawService {
+  init(fullParam: AnimationParam): void;
+  draw(delay: number, fullParam: AnimationParam): void;
+  restart(fullParam: AnimationParam): void;
+}
+
+export interface Draw3dService {
+  init(fullParam: Animation3dParam): void;
+  draw(delay: number, fullParam: Animation3dParam): void;
+  restart(fullParam: Animation3dParam): void;
 }
