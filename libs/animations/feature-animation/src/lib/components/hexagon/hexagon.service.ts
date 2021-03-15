@@ -27,9 +27,9 @@ export class HexagonService implements Draw3dService {
   public draw(delay: number, fullParam: HexagonParam): void {
     const rotationService = fullParam.sceneRotationService;
     this.group.rotation.y +=
-      (rotationService.targetRotationy - this.group.rotation.y) * 0.05;
+      (rotationService.targetRotationx - this.group.rotation.y) * 0.05;
     this.group.rotation.x +=
-      (rotationService.targetRotationx - this.group.rotation.x) * 0.05;
+      (rotationService.targetRotationy - this.group.rotation.x) * 0.05;
 
     this.cube.rotation.x += -0.06;
     this.renderer.render(this.scene, this.camera);
@@ -134,7 +134,7 @@ export class HexagonService implements Draw3dService {
       }
     }
   }
-  
+
   private buildHexagonShape(x: number, y: number, r: number): THREE.Shape {
     return new THREE.Shape()
       .moveTo(x - r * cos6, y + r * sin6)
