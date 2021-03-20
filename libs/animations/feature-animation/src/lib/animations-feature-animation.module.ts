@@ -31,6 +31,10 @@ import { ScrollParamComponent } from './components/scroll/scroll-param.component
 import { HexagonComponent } from './components/hexagon/hexagon.component';
 import { HexagonParamComponent } from './components/hexagon/hexagon-param.component';
 import { Scene3dComponent } from './services/scene3d.component';
+import { TubeComponent } from './components/tube/tube.component';
+import { TubeParamComponent } from './components/tube/tube-param.component';
+import { TorusComponent } from './components/torus/torus.component';
+import { TorusParamComponent } from './components/torus/torus-param.component';
 
 export const animationsFeatureAnimationModuleRoutes: Routes = [
   //{ path: '', pathMatch: 'full', component: HexagonComponent },
@@ -42,6 +46,8 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
   { path: 'swarm', component: SwarmComponent },
   { path: 'scroll', component: ScrollComponent },
   { path: 'hexagon', component: HexagonComponent },
+  { path: 'tube', component: TubeComponent },
+  { path: 'torus', component: TorusComponent },
 ];
 
 @NgModule({
@@ -76,6 +82,10 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     ScrollParamComponent,
     HexagonComponent,
     HexagonParamComponent,
+    TubeComponent,
+    TubeParamComponent,
+    TorusComponent,
+    TorusParamComponent,
     ReactiveColumnDirective,
   ],
   exports: [AnimationsLayoutComponent],
