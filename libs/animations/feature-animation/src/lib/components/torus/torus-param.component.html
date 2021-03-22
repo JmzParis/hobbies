@@ -1,30 +1,37 @@
 <section class='main'>
+    <div class="p-field-checkbox">    
+        <p-checkbox [(ngModel)]="userParam.tube" [binary]="true" inputId="tube"></p-checkbox>
+        <label for="tube">Tube</label>
+    </div>
+    <div class="p-field-checkbox">    
+        <p-checkbox [(ngModel)]="userParam.wireframe" [binary]="true" inputId="wireframe"></p-checkbox>
+        <label for="wireframe">Wireframe</label>
+    </div>
+    <label>Scale: {{userParam.scale}}</label>
+    <p-slider [(ngModel)]="userParam.scale" [min]="0.1" [max]="3" [step]="0.1"></p-slider>
+    <br/>
+    <label>Segments: {{userParam.segments}}</label>
+    <p-slider [(ngModel)]="userParam.segments" [min]="1" [max]="2001" [step]="10"></p-slider>
+    <br/>
+    <label>Radius: {{userParam.radius}}</label>
+    <p-slider [(ngModel)]="userParam.radius" [disabled]="!userParam.tube" [min]="0.1" [max]="5" [step]="0.1"></p-slider>
+    <br/>
+    <label>Radial divisions: {{userParam.radialDivision}}</label>
+    <p-slider [(ngModel)]="userParam.radialDivision" [disabled]="!userParam.tube" [min]="1" [max]="30" [step]="1"></p-slider>
+    <br/>
     <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
     <br/>
     <br/>
     <label>R1: {{userParam.r1}}</label>
-    <p-slider [(ngModel)]="userParam.r1" [min]="0" [max]="7" [step]="1"></p-slider>
+    <p-slider [(ngModel)]="userParam.r1" [min]="1" [max]="7" [step]="1"></p-slider>
     <br/>
     <label>S1: {{userParam.s1}}</label>
     <p-slider [(ngModel)]="userParam.s1" [min]="-50" [max]="50" [step]="1"></p-slider>
     <br/>
     <label>R2: {{userParam.r2}}</label>
-    <p-slider [(ngModel)]="userParam.r2" [min]="0" [max]="7" [step]="1"></p-slider>
+    <p-slider [(ngModel)]="userParam.r2" [min]="1" [max]="7" [step]="1"></p-slider>
     <br/>
     <label>S2: {{userParam.s2}}</label>
     <p-slider [(ngModel)]="userParam.s2" [min]="-50" [max]="50" [step]="1"></p-slider>
-    <br/>
-    
-    <label>Scale: {{userParam.scale}}</label>
-    <p-slider [(ngModel)]="userParam.scale" [min]="0.1" [max]="3" [step]="0.1"></p-slider>
-    <br/>
-    <label>Segments: {{userParam.segments}}</label>
-    <p-slider [(ngModel)]="userParam.segments" [min]="1" [max]="1001" [step]="10"></p-slider>
-    <br/>
-    <label>Radius: {{userParam.radius}}</label>
-    <p-slider [(ngModel)]="userParam.radius" [min]="0.1" [max]="5" [step]="0.1"></p-slider>
-    <br/>
-    <label>Radial divisions: {{userParam.radialDivision}}</label>
-    <p-slider [(ngModel)]="userParam.radialDivision" [min]="1" [max]="30" [step]="1"></p-slider>
     <br/>
 </section>

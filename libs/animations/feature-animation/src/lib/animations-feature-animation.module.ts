@@ -12,6 +12,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { SliderModule } from 'primeng/slider';
 import { DropdownModule } from 'primeng/dropdown';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { SceneComponent } from './services/scene.component';
 import { AnimationsLayoutComponent } from './animations-layout/animations-layout.component';
@@ -63,6 +64,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     ButtonModule,
     SliderModule,
     DropdownModule,
+    CheckboxModule,
     RouterModule.forChild(animationsFeatureAnimationModuleRoutes),
   ],
   declarations: [

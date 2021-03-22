@@ -3,6 +3,8 @@ import { Draw3dService } from '../../services/scene-model';
 
 import * as THREE from 'three';
 import { TubeParam, TubeUserParam } from './tube-param';
+import { Scene3dService } from '../../services/three-shared';
+import { buildMesh, goldMaterial } from '../../services/three-factory';
 
 class CustomCurve extends THREE.Curve<THREE.Vector3> {
   constructor(public scale = 1, private userParam: TubeUserParam) {
@@ -31,139 +33,42 @@ class CustomCurve extends THREE.Curve<THREE.Vector3> {
 @Injectable({
   providedIn: 'root',
 })
-export class TubeService implements Draw3dService {
-  private renderer!: THREE.WebGLRenderer;
-  private camera!: THREE.PerspectiveCamera;
-  private scene!: THREE.Scene;
-  private mesh!: THREE.Mesh;
-  private material!: THREE.Material;
-  private wireframeMaterial = new THREE.MeshBasicMaterial({
-    color: 0x000000,
-    opacity: 0.3,
-    wireframe: true,
-    transparent: true,
-  });
+export class TubeService extends Scene3dService implements Draw3dService {
   private userParam!: TubeUserParam;
-  private spline!: CustomCurve;
 
   public init(fullParam: TubeParam): void {
+    this.userParam = fullParam.userParam as TubeUserParam;
     this.createScene(fullParam);
+    this.populateSceneGroup();
   }
 
   public restart(fullParam: TubeParam): void {
-    this.setTube();
+    this.populateSceneGroup();
   }
 
   public draw(delay: number, fullParam: TubeParam): void {
-    const userParam = fullParam.userParam as TubeUserParam;
-    this.userParam = userParam;
-    const rotationService = fullParam.sceneRotationService;
-    /*
-    this.mesh.rotation.y +=
-      (rotationService.targetRotationx - this.scene.rotation.y) * 0.05;
-    this.mesh.rotation.x +=
-      (rotationService.targetRotationy - this.scene.rotation.x) * 0.05;
-*/
-    this.mesh.rotation.x += 0.001;
-    this.mesh.rotation.y += 0.003;
-    this.mesh.rotation.z += 0.005;
-
-    this.renderer.render(this.scene, this.camera);
+    this.userParam = fullParam.userParam as TubeUserParam;
+    super.draw(delay, fullParam);
   }
 
-  public resize(fullParam: TubeParam): void {
-    const canvas = fullParam.canvas;
-    const width = canvas.width;
-    const height = canvas.height;
-
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
-
-    this.renderer.setSize(width, height);
+  protected populateSceneGroup(): void {
+    super.populateSceneGroup();
+    this.setTube(this.group);
+    this.setScale(this.userParam.scale);
   }
 
-  private buildRenderer(fullParam: TubeParam): THREE.WebGLRenderer {
-    const canvas = fullParam.canvas;
-
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      alpha: true, // transparent background
-      antialias: true, // smooth edges
-    });
-
-    renderer.setSize(canvas.width, canvas.height);
-    return renderer;
-  }
-
-  private setTube(): void {
-    if (this.mesh !== undefined) {
-      this.scene.remove(this.mesh);
-      this.mesh.geometry.dispose();
-    }
-
+  private setTube(group: THREE.Group) {
     const up = this.userParam;
-    this.spline = new CustomCurve(2, up);
+
+    const spline = new CustomCurve(up.scale, up);
     const tubeGeometry = new THREE.TubeGeometry(
-      this.spline,
+      spline,
       up.segments,
       up.radius,
       up.radialDivision,
       false
     );
-
-    this.addGeometry(tubeGeometry);
-    this.setScale();
-  }
-
-  private addGeometry(geometry: THREE.TubeGeometry): void {
-    // 3D shape
-    const mesh = new THREE.Mesh(geometry, this.material);
-    const wireframe = new THREE.Mesh(geometry, this.wireframeMaterial);
-    mesh.add(wireframe);
-    this.mesh = mesh;
-    this.scene.add(mesh);
-  }
-
-  private setScale(): void {
-    const up = this.userParam;
-    this.mesh.scale.set(up.scale, up.scale, up.scale);
-  }
-
-  private createScene(fullParam: TubeParam): void {
-    const userParam = fullParam.userParam as TubeUserParam;
-    this.userParam = userParam;
-
-    const canvas = fullParam.canvas;
-    this.scene = new THREE.Scene();
-    //this.scene.background = new THREE.Color(0x505050);
-    this.scene.background = new THREE.Color(0x000000);
-    
-    this.scene.add( new THREE.AmbientLight( 0x303030 ) );
-    this.camera = new THREE.PerspectiveCamera(
-      75,
-      canvas.width / canvas.height,
-      0.1,
-      1000
-    );
-    this.camera.position.z = 20;
-    this.scene.add(this.camera);
-
-    const light = new THREE.PointLight(0xffffff, 0.85);
-    this.camera.add(light);
-
-    this.renderer = this.buildRenderer(fullParam);
-
-    //this.geometry = new THREE.TubeGeometry(this.path, 200, 1, 20, false);
-    this.material = new THREE.MeshPhongMaterial({
-      color: 0xff8800,
-      side: THREE.DoubleSide,
-    });
-    //this.material.blending = THREE.AdditiveBlending;
-    this.setTube();
-    /*
-    const mesh = new THREE.Mesh(this.geometry, material);
-    this.mesh = mesh;
-    this.scene.add(mesh);
-    */
+    super.addGeometryForLaterDisposal(tubeGeometry);
+    group.add(buildMesh(tubeGeometry, goldMaterial, up.wireframe));
   }
 }

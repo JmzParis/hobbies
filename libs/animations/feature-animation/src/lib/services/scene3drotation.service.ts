@@ -48,12 +48,12 @@ export class Scene3dRotationService implements OnDestroy {
     this.mouseX = event.clientX - this.halfWidth;
     this.targetRotationx =
       this.targetRotationxOnMouseDown +
-      (this.mouseX - this.mouseXOnMouseDown) * 0.02;
+      (this.mouseX - this.mouseXOnMouseDown) / this.halfHeight;
 
     this.mouseY = event.clientY - this.halfHeight;
     this.targetRotationy =
       this.targetRotationyOnMouseDown +
-      (this.mouseY - this.mouseYOnMouseDown) * 0.02;
+      (this.mouseY - this.mouseYOnMouseDown) / this.halfWidth;
   }
 
   public onDocumentMouseUp() {
@@ -87,12 +87,12 @@ export class Scene3dRotationService implements OnDestroy {
       this.mouseX = event.touches[0].pageX - this.halfWidth;
       this.targetRotationx =
         this.targetRotationxOnMouseDown +
-        (this.mouseX - this.mouseXOnMouseDown) * 0.05;
+        (this.mouseX - this.mouseXOnMouseDown) / this.halfHeight;
 
       this.mouseY = event.touches[0].pageY - this.halfHeight;
       this.targetRotationy =
         this.targetRotationyOnMouseDown +
-        (this.mouseY - this.mouseYOnMouseDown) * 0.05;
+        (this.mouseY - this.mouseYOnMouseDown) / this.halfWidth;
     }
   }
 
@@ -130,6 +130,11 @@ export class Scene3dRotationService implements OnDestroy {
       this.onDocumentMouseOut.bind(this),
       false
     );
+  }
+
+  public rotate(group: THREE.Group, xSpeed = 0.01, ySpeed = 0.01): void {
+    group.rotation.x += (this.targetRotationy - group.rotation.x) * xSpeed;
+    group.rotation.y += (this.targetRotationx - group.rotation.y) * ySpeed;
   }
 
   ngOnDestroy(): void {
