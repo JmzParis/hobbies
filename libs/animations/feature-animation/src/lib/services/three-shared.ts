@@ -2,11 +2,9 @@ import * as THREE from 'three';
 import { BufferGeometry } from 'three';
 import { Animation3dParam } from './scene-model';
 import {
-  buildGridHelper,
   buildPerspectiveCamera,
   buildRenderer,
   buildScene,
-  createOrbitControls,
 } from './three-factory';
 
 export function threeResize(
@@ -27,7 +25,6 @@ export class Scene3dService {
   private scene!: THREE.Scene;
   protected group!: THREE.Group;
   private geometries = [] as BufferGeometry[];
-
 
   public draw(delay: number, fullParam: Animation3dParam): void {
     fullParam.sceneRotationService.rotate(this.group);
@@ -61,11 +58,9 @@ export class Scene3dService {
       this.geometries = [];
     }
     const group = new THREE.Group();
-    if (r !== undefined) {
-      group.rotation.x = r.x;
-      group.rotation.y = r.y;
-      group.rotation.z = r.z;
-    }
+
+    if (r !== undefined) group.rotation.set(r.x, r.y, r.z);
+
     this.group = group;
     this.scene.add(this.group);
   }
@@ -74,7 +69,7 @@ export class Scene3dService {
     this.recreateGroup();
   }
 
-  protected addGeometryForLaterDisposal(geometry: BufferGeometry){
+  protected addGeometryForLaterDisposal(geometry: BufferGeometry) {
     this.geometries.push(geometry);
   }
 }
