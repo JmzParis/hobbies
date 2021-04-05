@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Draw3dService } from '../../services/scene-model';
+import { UserParam } from '../../services/scene-model';
+import { TorusUserParam } from './torus-param';
+import { Scene3dService } from '../../services/three-shared';
 
 import * as THREE from 'three';
-import { TorusParam, TorusUserParam } from './torus-param';
-import { Scene3dService } from '../../services/three-shared';
 import {
   buildMesh,
   goldMaterial,
@@ -33,41 +33,20 @@ class TorusCurve extends THREE.Curve<THREE.Vector3> {
 @Injectable({
   providedIn: 'root',
 })
-export class TorusService extends Scene3dService implements Draw3dService {
-  userParam!: TorusUserParam;
-
-  public init(fullParam: TorusParam): void {
-    this.userParam = fullParam.userParam as TorusUserParam;
-    this.createScene(fullParam);
-    this.populateSceneGroup();
+export class TorusService extends Scene3dService {
+  protected buildSubject(up: UserParam): THREE.Object3D[] {
+    const tup = up as TorusUserParam;
+    return tup.tube ? this.buildTorusTube(tup) : this.buildTorusRibbons(tup);
   }
 
-  public restart(fullParam: TorusParam): void {
-    this.populateSceneGroup();
-  }
-
-  public draw(delay: number, fullParam: TorusParam): void {
-    this.userParam = fullParam.userParam as TorusUserParam;
-    super.draw(delay, fullParam);
-  }
-
-  protected populateSceneGroup() {
-    super.populateSceneGroup();
-    if (this.userParam.tube) this.setTorusTube(this.group);
-    else this.setTorusRibbons(this.group);
-
-    this.setScale(this.userParam.scale);
-  }
-
-  private setTorusRibbons(group: THREE.Group) {
-    const up = this.userParam;
+  private buildTorusRibbons(up: TorusUserParam): THREE.Object3D[] {
+    const meshes = [] as THREE.Object3D[];
     const a = (2 * Math.PI) / 200;
-
     const spline1 = new TorusCurve(2, { ...up, phi: 0 });
     const spline2 = new TorusCurve(2, { ...up, phi: a });
     const ribbonGeometry1 = buildRibbon([spline1, spline2], up.segments);
     super.addGeometryForLaterDisposal(ribbonGeometry1);
-    group.add(buildMesh(ribbonGeometry1, goldMaterial, up.wireframe));
+    meshes.push(buildMesh(ribbonGeometry1, goldMaterial, up.wireframe));
 
     const spline3 = new TorusCurve(2, { ...up, phi: 1.5 * a });
     const spline4 = new TorusCurve(2, { ...up, phi: 2.5 * a });
@@ -75,11 +54,11 @@ export class TorusService extends Scene3dService implements Draw3dService {
     super.addGeometryForLaterDisposal(ribbonGeometry2);
     const cyanMat = cyanMaterial;
     cyanMat.blending = THREE.AdditiveBlending;
-    group.add(buildMesh(ribbonGeometry2, cyanMat, up.wireframe));
+    meshes.push(buildMesh(ribbonGeometry2, cyanMat, up.wireframe));
+    return meshes;
   }
 
-  private setTorusTube(group: THREE.Group): void {
-    const up = this.userParam;
+  private buildTorusTube(up: TorusUserParam): THREE.Object3D[] {
     const spline = new TorusCurve(2, up);
     const tubeGeometry = new THREE.TubeGeometry(
       spline,
@@ -89,7 +68,6 @@ export class TorusService extends Scene3dService implements Draw3dService {
       false
     );
     super.addGeometryForLaterDisposal(tubeGeometry);
-    const mesh = buildMesh(tubeGeometry, goldMaterial, up.wireframe);
-    group.add(mesh);
+    return [buildMesh(tubeGeometry, goldMaterial, up.wireframe)];
   }
 }

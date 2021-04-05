@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Draw3dService } from '../../services/scene-model';
+
+import { Scene3dService } from '../../services/three-shared';
+import { UserParam } from '../../services/scene-model';
+import { TubeUserParam } from './tube-param';
 
 import * as THREE from 'three';
-import { TubeParam, TubeUserParam } from './tube-param';
-import { Scene3dService } from '../../services/three-shared';
 import { buildMesh, goldMaterial } from '../../services/three-factory';
 
 class CustomCurve extends THREE.Curve<THREE.Vector3> {
@@ -33,42 +34,18 @@ class CustomCurve extends THREE.Curve<THREE.Vector3> {
 @Injectable({
   providedIn: 'root',
 })
-export class TubeService extends Scene3dService implements Draw3dService {
-  private userParam!: TubeUserParam;
-
-  public init(fullParam: TubeParam): void {
-    this.userParam = fullParam.userParam as TubeUserParam;
-    this.createScene(fullParam);
-    this.populateSceneGroup();
-  }
-
-  public restart(fullParam: TubeParam): void {
-    this.populateSceneGroup();
-  }
-
-  public draw(delay: number, fullParam: TubeParam): void {
-    this.userParam = fullParam.userParam as TubeUserParam;
-    super.draw(delay, fullParam);
-  }
-
-  protected populateSceneGroup(): void {
-    super.populateSceneGroup();
-    this.setTube(this.group);
-    this.setScale(this.userParam.scale);
-  }
-
-  private setTube(group: THREE.Group) {
-    const up = this.userParam;
-
-    const spline = new CustomCurve(up.scale, up);
+export class TubeService extends Scene3dService {
+  protected buildSubject(up: UserParam): THREE.Object3D[]{
+    const tup = up as TubeUserParam;
+    const spline = new CustomCurve(tup.scale, tup);
     const tubeGeometry = new THREE.TubeGeometry(
       spline,
-      up.segments,
-      up.radius,
-      up.radialDivision,
+      tup.segments,
+      tup.radius,
+      tup.radialDivision,
       false
     );
     super.addGeometryForLaterDisposal(tubeGeometry);
-    group.add(buildMesh(tubeGeometry, goldMaterial, up.wireframe));
+    return [buildMesh(tubeGeometry, goldMaterial, tup.wireframe)];
   }
 }

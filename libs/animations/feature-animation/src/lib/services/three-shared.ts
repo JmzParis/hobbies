@@ -1,13 +1,13 @@
 import * as THREE from 'three';
 import { BufferGeometry } from 'three';
-import { Animation3dParam } from './scene-model';
+import { Animation3dParam, Draw3dService, UserParam } from './scene-model';
 import {
   buildPerspectiveCamera,
   buildRenderer,
   buildScene,
 } from './three-factory';
 
-export function threeResize(
+function threeResize(
   canvas: HTMLCanvasElement,
   camera: THREE.PerspectiveCamera,
   renderer: THREE.WebGLRenderer
@@ -19,17 +19,13 @@ export function threeResize(
   renderer.setSize(width, height);
 }
 
-export class Scene3dService {
+export class Scene3dService implements Draw3dService {
+  private fullParam!: Animation3dParam;
   private renderer!: THREE.WebGLRenderer;
   private camera!: THREE.PerspectiveCamera;
   private scene!: THREE.Scene;
   protected group!: THREE.Group;
   private geometries = [] as BufferGeometry[];
-
-  public draw(delay: number, fullParam: Animation3dParam): void {
-    fullParam.sceneRotationService.rotate(this.group);
-    this.renderer.render(this.scene, this.camera);
-  }
 
   public resize(fullParam: Animation3dParam): void {
     threeResize(fullParam.canvas, this.camera, this.renderer);
@@ -65,11 +61,35 @@ export class Scene3dService {
     this.scene.add(this.group);
   }
 
-  protected populateSceneGroup(): void {
-    this.recreateGroup();
-  }
-
   protected addGeometryForLaterDisposal(geometry: BufferGeometry) {
     this.geometries.push(geometry);
+  }
+
+  public init(fullParam: Animation3dParam): void {
+    this.fullParam = fullParam;
+    this.createScene(fullParam);
+    this.populateSceneGroup();
+  }
+
+  public restart(fullParam: Animation3dParam): void {
+    this.fullParam = fullParam;
+    this.populateSceneGroup();
+  }
+
+  public draw(delay: number, fullParam: Animation3dParam): void {
+    this.fullParam = fullParam;
+    fullParam.sceneRotationService.rotate(this.group);
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  protected populateSceneGroup(): void {
+    this.recreateGroup();
+    const userParam = this.fullParam.userParam;    
+    this.group.add(...this.buildSubject(userParam));
+    this.setScale(userParam.scale);
+  }
+  
+  protected buildSubject(up: UserParam): THREE.Object3D[]{    
+    return [];
   }
 }

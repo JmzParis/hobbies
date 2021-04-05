@@ -36,10 +36,12 @@ export const confDrawings = [
 export interface UserParam {
   bgMode: number;
   colorMode: number;
+  scale: number;
 }
 export const defaultUserParam = {
   bgMode: 8,
   colorMode: 2,
+  scale: 1,
 } as UserParam;
 
 export interface AnimationParam {

@@ -2,7 +2,6 @@ import { Animation3dParam, defaultUserParam, UserParam } from '../../services/sc
 
 export interface TubeUserParam extends UserParam {
   wireframe: boolean;
-  scale: number;
   segments: number;
   radius: number;
   radialDivision: number;
@@ -20,7 +19,6 @@ export interface TubeUserParam extends UserParam {
 export const defaultTubeUserParam = {
   ...defaultUserParam,
   wireframe: true,
-  scale: 1,
   segments: 400,
   radius: 0.5,
   radialDivision: 8,
