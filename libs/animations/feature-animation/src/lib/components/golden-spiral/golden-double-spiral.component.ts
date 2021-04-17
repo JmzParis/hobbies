@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SceneControlService } from '../../services/scene-control.service';
 import { GoldenDoubleSpiralService } from './golden-doublespiral.service';
 import {
   defaultGoldenSpiralUserParam,
@@ -7,17 +8,24 @@ import {
 
 @Component({
   selector: 'jz-golden-double-spiral',
-  template: `<ng-template #userParamTpl>
-      <jz-golden-spiral-param [userParam]="userParam"></jz-golden-spiral-param>
-    </ng-template>
-    <jz-scene
-      [paramTemplate]="userParamTpl"
+  template: `<jz-scene
+    [userParam]="userParam"
+    [drawService]="drawService"
+    [controlService]="controlService"
+  >
+    <jz-golden-spiral-param
+      jzParam
       [userParam]="userParam"
-      [drawService]="drawService"
-    ></jz-scene>`,
+      [controlService]="controlService"
+    >
+    </jz-golden-spiral-param>
+  </jz-scene>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoldenDoubleSpiralComponent {
   userParam = { ...defaultGoldenSpiralUserParam } as GoldenSpiralUserParam;
-  constructor(public drawService: GoldenDoubleSpiralService) {}
+  constructor(
+    public drawService: GoldenDoubleSpiralService,
+    public controlService: SceneControlService
+  ) {}
 }

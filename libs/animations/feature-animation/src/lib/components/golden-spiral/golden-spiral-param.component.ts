@@ -1,17 +1,36 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  ChangeDetectorRef,
+  OnInit,
+} from '@angular/core';
+import {
+  D_SCENE_PARAM_COMPONENT,
+  SceneParam,
+} from '../../services/param.directive';
+import { SceneControlService } from '../../services/scene-control.service';
 import { confColorModes, confDrawings } from '../../services/scene-model';
 import { GoldenSpiralUserParam } from './golden-spiral-param';
 
 @Component({
   selector: 'jz-golden-spiral-param',
   templateUrl: './golden-spiral-param.component.html',
+  styleUrls: ['../../services/param.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: D_SCENE_PARAM_COMPONENT,
+      useExisting: GoldenSpiralParamComponent,
+    },
+  ],
 })
-export class GoldenSpiralParamComponent {
+export class GoldenSpiralParamComponent implements SceneParam, OnInit {
   @Input() userParam!: GoldenSpiralUserParam;
-  colorModes = confColorModes;
-  drawings = confDrawings;
-  angles = [
+  @Input() controlService!: SceneControlService;
+  readonly colorModes = confColorModes;
+  readonly drawings = confDrawings;
+  readonly angles = [
     { value: 137.5, title: 'Golden Ratio' },
     { value: 137.5 / 2.0, title: 'Golden Ratio /2' },
     { value: 137.5 / 3.0, title: 'Golden Ratio /3' },
@@ -31,9 +50,18 @@ export class GoldenSpiralParamComponent {
     { value: 180.0, title: '180°' },
   ];
 
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.controlService.display(true, false, true);
+  }
+
+  onRefresh(): void {
+    this.changeDetectorRef.markForCheck();
+  }
+
   onRandom(): void {
     const p = this.userParam;
-    //this.param.angle = this.random(0,360,0.1);
     p.sizeI = this.random(1, 40, 1);
     p.sizeR = this.random(0, 40, 10);
     p.speedR = this.random(-10, 10, 0.2);

@@ -15,8 +15,16 @@
     <label>Radial divisions: {{userParam.radialDivision}}</label>
     <p-slider [(ngModel)]="userParam.radialDivision" [min]="1" [max]="30" [step]="1"></p-slider>
     <br/>
-    <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
-    <br/>
+</section>
+<hr/>
+<section>
+    <p>
+        <label>x: {{userParam.rx}} sin({{userParam.sx}} 2pi t) cos({{userParam.cx}} 2pi t)</label>
+        <br/>
+        <label>y: {{userParam.ry}} sin({{userParam.sy}} 2pi t) cos({{userParam.cy}} 2pi t)</label>
+        <br/>
+        <label>z: {{userParam.rz}} sin({{userParam.sz}} 2pi t) cos({{userParam.cz}} 2pi t)</label>
+    </p>
     <br/>
     <label>Rx: {{userParam.rx}}</label>
     <p-slider [(ngModel)]="userParam.rx" [min]="0" [max]="7" [step]="1"></p-slider>
@@ -45,11 +53,4 @@
     <label>Cz: {{userParam.cz}}</label>
     <p-slider [(ngModel)]="userParam.cz" [min]="-5" [max]="5" [step]="1"></p-slider>
     <br/>
-    <p>
-        <label>x: {{userParam.rx}} sin({{userParam.sx}} 2pi t) cos({{userParam.cx}} 2pi t)</label>
-        <br/>
-        <label>y: {{userParam.ry}} sin({{userParam.sy}} 2pi t) cos({{userParam.cy}} 2pi t)</label>
-        <br/>
-        <label>z: {{userParam.rz}} sin({{userParam.sz}} 2pi t) cos({{userParam.cz}} 2pi t)</label>
-    </p>
 </section>

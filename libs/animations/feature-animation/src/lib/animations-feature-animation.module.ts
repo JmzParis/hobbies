@@ -36,6 +36,9 @@ import { TubeComponent } from './components/tube/tube.component';
 import { TubeParamComponent } from './components/tube/tube-param.component';
 import { TorusComponent } from './components/torus/torus.component';
 import { TorusParamComponent } from './components/torus/torus-param.component';
+import { SceneControlComponent } from './services/scene-control/scene-control.component';
+import { ParamDirective } from './services/param.directive';
+
 
 export const animationsFeatureAnimationModuleRoutes: Routes = [
   //{ path: '', pathMatch: 'full', component: HexagonComponent },
@@ -89,6 +92,8 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     TorusComponent,
     TorusParamComponent,
     ReactiveColumnDirective,
+    SceneControlComponent,  
+    ParamDirective,  
   ],
   exports: [AnimationsLayoutComponent],
 })

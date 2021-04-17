@@ -4,9 +4,8 @@
         <p-dropdown class="p-col-8" [options]="bgModes" [(ngModel)]="userParam.bgMode" optionLabel="title" optionValue="value"></p-dropdown>    
         <br/>
     </section>
-    <hr/>
-    <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
     <br/>
+    <hr/>
     <br/>
     <label>Corps count: {{userParam.corpsCount}}</label>
     <p-slider [(ngModel)]="userParam.corpsCount" [min]="2" [max]="200" [step]="1"></p-slider>

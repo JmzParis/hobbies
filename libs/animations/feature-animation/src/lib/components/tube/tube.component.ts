@@ -3,24 +3,30 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
+import { SceneControlService } from '../../services/scene-control.service';
 import { defaultTubeUserParam, TubeUserParam } from './tube-param';
 import { TubeService } from './tube.service';
 
-
 @Component({
   selector: 'jz-tube',
-  template: `<ng-template #userParamTpl>
-      <jz-tube-param [userParam]="userParam"></jz-tube-param>
-    </ng-template>
-    <jz-scene3d
-      [paramTemplate]="userParamTpl"
+  template: `<jz-scene3d
+    [userParam]="userParam"
+    [drawService]="drawService"
+    [controlService]="controlService"
+  >
+    <jz-tube-param
+      jzParam
       [userParam]="userParam"
-      [drawService]="drawService"
-    ></jz-scene3d>`,
+      [controlService]="controlService"
+    ></jz-tube-param>
+  </jz-scene3d>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TubeComponent {
   userParam = { ...defaultTubeUserParam } as TubeUserParam;
-  constructor(public drawService: TubeService) {}
+  constructor(
+    public drawService: TubeService,
+    public controlService: SceneControlService
+  ) {}
 }

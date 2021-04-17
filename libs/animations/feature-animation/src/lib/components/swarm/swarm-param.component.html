@@ -1,22 +1,41 @@
 <section>
-    <section class="p-grid">
-        <label class="p-col-4">Background</label>
-        <p-dropdown class="p-col-8" [options]="bgModes" [(ngModel)]="userParam.bgMode" optionLabel="title" optionValue="value"></p-dropdown>
-        <br/>
-    </section>
-    <hr/>
-    <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
-    <br/>
-    <br/>
-    <label>Family count: {{userParam.familyCount}}</label>
-    <p-slider [(ngModel)]="userParam.familyCount" [min]="1" [max]="8" [step]="1"></p-slider>
-    <br/>
+  <section class="p-grid">
+    <label class="p-col-4">Background</label>
+    <p-dropdown
+      class="p-col-8"
+      [options]="bgModes"
+      [(ngModel)]="userParam.bgMode"
+      optionLabel="title"
+      optionValue="value"
+    ></p-dropdown>
+    <br />
+  </section>
+  <hr />
+  <br />
+  <label>Family count: {{ userParam.familyCount }}</label>
+  <p-slider
+    [(ngModel)]="userParam.familyCount"
+    [min]="1"
+    [max]="8"
+    [step]="1"
+  ></p-slider>
+  <br />
 
-    <label>Family size: {{userParam.familySize}}</label>
-    <p-slider [(ngModel)]="userParam.familySize" [min]="2" [max]="200" [step]="1"></p-slider>
-    <br/>
-    
-    <label>Gravity: {{userParam.gravity}}</label>
-    <p-slider [(ngModel)]="userParam.gravity" [min]="-1" [max]="1" [step]="0.05"></p-slider>
-    <br/>
+  <label>Family size: {{ userParam.familySize }}</label>
+  <p-slider
+    [(ngModel)]="userParam.familySize"
+    [min]="2"
+    [max]="200"
+    [step]="1"
+  ></p-slider>
+  <br />
+
+  <label>Gravity: {{ userParam.gravity | number }}</label>
+  <p-slider
+    [(ngModel)]="userParam.gravity"
+    [min]="-1"
+    [max]="1"
+    [step]="0.05"
+  ></p-slider>
+  <br />
 </section>

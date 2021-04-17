@@ -1,0 +1,28 @@
+<section class="space-evenly">
+  <p-button
+    *ngIf="controlService.isRandomDisplayed"
+    icon="pi pi-sliders-h"
+    pRipple
+    title="Randomize parameters"
+    styleClass="p-button-secondary"
+    (click)="onRandom()"
+  ></p-button>
+  <p-button
+    *ngIf="controlService.isRestartDisplayed"
+    icon="pi pi-undo"
+    pRipple
+    title="Restart scene"
+    (click)="onRestart()"
+  ></p-button>
+  <p-button
+    *ngIf="controlService.isStopStartDisplayed"
+    [icon]="isStopable ? 'pi pi-pause' : 'pi pi-play'"
+    pRipple
+    [title]="isStopable ? 'Pause' : 'Play'"
+    (click)="onStopOrPlay()"
+  ></p-button>
+</section>
+<section class="space-evenly">
+  <p>Delay:&nbsp;{{ controlService.delay$ | async }}</p>
+  <p>FPS:&nbsp;{{ controlService.fps$ | async }}</p>
+</section>

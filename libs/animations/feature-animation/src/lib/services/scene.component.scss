@@ -1,9 +1,16 @@
- .wrapper {
+.wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute; // Container should have position: relative;
+  canvas {
     width: 100%;
     height: 100%;
-    position:absolute; // Container should have position: relative;
-    canvas {        
-       width: 100%;
-       height: 100%;
-    } 
+  }
+}
+
+h1 {
+  font-family: 'Sofia', sans-serif;
+  font-size: 35px;
+  color: #d7ceb2;
+  text-shadow: 3px 3px 0px #2c2e38, 5px 5px 0px #5c5f72;
 }

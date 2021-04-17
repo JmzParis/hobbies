@@ -1,28 +1,57 @@
-<section>  
-    <p-button class="p-button-secondary" (click)='onRandom()'>🎰 Random</p-button>  
-    <br/>
-    <br/>
-    <label>Back picture: {{userParam.imgBack}}</label>
-    <p-slider [(ngModel)]="userParam.imgBack" [min]="-1" [max]="23" [step]="1"></p-slider>
-    <br/>
+<section>
+  <label>Back picture: {{ userParam.imgBack }}</label>
+  <p-slider
+    [(ngModel)]="userParam.imgBack"
+    [min]="-1"
+    [max]="23"
+    [step]="1"
+  ></p-slider>
+  <br />
 
-    <label>Back horizontal speed: {{userParam.backHorizSpeed}}</label>
-    <p-slider [(ngModel)]="userParam.backHorizSpeed" [min]="-12" [max]="12" [step]="0.2"></p-slider>
-    <br/>
-    
-    <label>Back vertical speed: {{userParam.backVertSpeed}}</label>
-    <p-slider [(ngModel)]="userParam.backVertSpeed" [min]="-12" [max]="12" [step]="0.2"></p-slider>
-    <br/>
+  <label>Back horizontal speed: {{ userParam.backHorizSpeed | number }}</label>
+  <p-slider
+    [(ngModel)]="userParam.backHorizSpeed"
+    [min]="-12"
+    [max]="12"
+    [step]="0.2"
+  ></p-slider>
+  <br />
 
-    <label>Front picture: {{userParam.imgFront}}</label>
-    <p-slider [(ngModel)]="userParam.imgFront" [min]="-1" [max]="23" [step]="1"></p-slider>
-    <br/>
+  <label>Back vertical speed: {{ userParam.backVertSpeed | number }}</label>
+  <p-slider
+    [(ngModel)]="userParam.backVertSpeed"
+    [min]="-12"
+    [max]="12"
+    [step]="0.2"
+  ></p-slider>
+  <br />
 
-    <label>Front horizontal speed: {{userParam.frontHorizSpeed}}</label>
-    <p-slider [(ngModel)]="userParam.frontHorizSpeed" [min]="-12" [max]="12" [step]="0.2"></p-slider>
-    <br/>
-    
-    <label>Front vertical speed: {{userParam.frontVertSpeed}}</label>
-    <p-slider [(ngModel)]="userParam.frontVertSpeed" [min]="-12" [max]="12" [step]="0.2"></p-slider>
-    <br/>
+  <label>Front picture: {{ userParam.imgFront }}</label>
+  <p-slider
+    [(ngModel)]="userParam.imgFront"
+    [min]="-1"
+    [max]="23"
+    [step]="1"
+  ></p-slider>
+  <br />
+
+  <label
+    >Front horizontal speed: {{ userParam.frontHorizSpeed | number }}</label
+  >
+  <p-slider
+    [(ngModel)]="userParam.frontHorizSpeed"
+    [min]="-12"
+    [max]="12"
+    [step]="0.2"
+  ></p-slider>
+  <br />
+
+  <label>Front vertical speed: {{ userParam.frontVertSpeed | number }}</label>
+  <p-slider
+    [(ngModel)]="userParam.frontVertSpeed"
+    [min]="-12"
+    [max]="12"
+    [step]="0.2"
+  ></p-slider>
+  <br />
 </section>

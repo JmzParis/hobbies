@@ -2,13 +2,12 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   ElementRef,
   HostListener,
   Input,
   NgZone,
   OnDestroy,
-  Renderer2,
-  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -16,6 +15,8 @@ import { Subject } from 'rxjs';
 import { AnimationService } from '@hobbies/shared/util-drawing';
 import { SceneService } from './scene.service';
 import { DrawService, UserParam } from './scene-model';
+import { SceneControlService } from './scene-control.service';
+import { ParamDirective } from './param.directive';
 
 @Component({
   selector: 'jz-scene',
@@ -25,28 +26,21 @@ import { DrawService, UserParam } from './scene-model';
   providers: [SceneService],
 })
 export class SceneComponent implements AfterViewInit, OnDestroy {
-  @Input() paramTemplate!: TemplateRef<unknown>;
-  @Input() userParam!: UserParam;  
+  @Input() userParam!: UserParam;
   @Input() drawService!: DrawService;
+  @Input() controlService!: SceneControlService;
   @ViewChild('canvas') canvasRef!: ElementRef;
+  @ContentChild(ParamDirective) paramDirective!: ParamDirective;
+
   private stopSubject = new Subject<boolean>();
   private stop$ = this.stopSubject.asObservable();
-  private delaySubject = new Subject<number>();
-  public delay$ = this.delaySubject.asObservable();
-  private fpsSubject = new Subject<number>();
-  public fps$ = this.fpsSubject.asObservable();
-  private lastDelay = 0;
-  private fpsAcc = new Array<number>(10);
-  private fpsIndex = 0;
-  public screenSize = '';
+
   leftSidebarVisible = false;
 
   constructor(
     private animationService: AnimationService,
     private sceneService: SceneService,
-    private ngZone: NgZone,
-    private renderer: Renderer2,
-    private elmRef: ElementRef
+    private ngZone: NgZone
   ) {}
 
   initStopObservable() {
@@ -54,37 +48,41 @@ export class SceneComponent implements AfterViewInit, OnDestroy {
     this.stop$ = this.stopSubject.asObservable();
   }
 
-  ngAfterViewInit(): void {  
-    if(!this.canvasRef) return;
-    const canvas = this.canvasRef.nativeElement;    
+  ngAfterViewInit(): void {
+    if (!this.canvasRef) return;
+    const canvas = this.canvasRef.nativeElement;
     this.sceneService.init(canvas, this.drawService, this.userParam);
-    this.screenSize = `Window: ${window.innerWidth}x${window.innerHeight}, canvas: ${canvas.width}x${canvas.height}`;
+
+    this.controlService.init(
+      this.onRandom.bind(this),
+      this.onRestart.bind(this),
+      this.onStop.bind(this),
+      this.onStart.bind(this)
+    );
 
     this.onStart();
   }
 
-  onStart(): void {
-    // this.ngZone.runOutsideAngular(() => {
-    this.initStopObservable();
-    this.animationService.animate(this.stop$, this.draw.bind(this));
-    // });
+  onRandom(): void {
+    if (this.paramDirective) {
+      this.paramDirective.onRandom();
+      this.paramDirective.onRefresh();
+    }
   }
 
-  private displayFps(delay: number) {
-    const diff = delay - this.lastDelay;
-    this.fpsIndex = (this.fpsIndex + 1) % 10;
-    this.fpsAcc[this.fpsIndex] = diff;
-    const smoothDiff = this.fpsAcc.reduce((a, b) => a + b) / 10;
-    this.delaySubject.next(smoothDiff << 0);
-    this.fpsSubject.next((1000 / smoothDiff) << 0);
-    this.lastDelay = delay;
+  onStart(): void {
+    // Run this outside angular zones,
+    // While drawing frame by frame no need of
+    // Angular view checks or changeDetection cycles.
+    this.ngZone.runOutsideAngular(() => {
+      this.initStopObservable();
+      this.animationService.animate(this.stop$, this.draw.bind(this));
+    });
   }
 
   private draw(delay: number): void {
-    this.displayFps(delay);
-    //this.ngZone.runOutsideAngular(() => {
+    this.controlService.processDelayForFps(delay);
     this.sceneService.draw(delay);
-    //});
   }
 
   onStop(): void {
@@ -106,7 +104,5 @@ export class SceneComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.stopSubject.next(true);
     this.stopSubject.complete();
-    this.delaySubject.complete();
-    this.fpsSubject.complete();
   }
 }

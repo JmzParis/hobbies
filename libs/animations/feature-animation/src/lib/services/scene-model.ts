@@ -1,3 +1,4 @@
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Scene3dRotationService } from './scene3drotation.service';
 
 export const confColorModes = [
@@ -29,8 +30,8 @@ export const confBackgroundModes = [
 export const confDrawings = [
   { value: 'circle', title: 'Circles' },
   { value: 'leaf', title: 'Leafs' },
-  { value: 'triangle', title: 'Triangles' },
-  { value: 'square', title: 'Squares' },
+ // { value: 'triangle', title: 'Triangles' },
+ // { value: 'square', title: 'Squares' },
 ];
 
 export interface UserParam {
@@ -70,3 +71,7 @@ export interface Draw3dService {
   draw(delay: number, fullParam: Animation3dParam): void;
   restart(fullParam: Animation3dParam): void;
 }
+
+
+
+
