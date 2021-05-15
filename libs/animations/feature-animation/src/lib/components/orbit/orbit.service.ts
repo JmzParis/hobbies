@@ -22,7 +22,7 @@ export class OrbitService implements DrawService {
     private spriteDrawService: SpriteDrawService
   ) {}
 
-  public init(fullParam: OrbitParam): void {
+  init(fullParam: OrbitParam): void {
     this.xc = fullParam.centerx;
     this.yc = fullParam.centery;
     this.space.init(fullParam.centerx * 2, fullParam.centery * 2, 20);
@@ -31,22 +31,21 @@ export class OrbitService implements DrawService {
     this.positionStableSystem(orbitUserParam);
   }
 
-  public restart(fullParam: OrbitParam): void {
+  restart(fullParam: OrbitParam): void {
     this.init(fullParam);
   }
 
-  public buildSystem(userParam: OrbitUserParam): void {
+  private buildSystem(userParam: OrbitUserParam): void {
     this.movers = [];
     for (let i = 0; i < userParam.corpsCount; i++) {
       const mass = Math.random() * userParam.maxMass;
-      //console.log('Mass: (' + mass + ')');
       const mover = new Mover(mass, 0, 0);
       mover.param = this.colorService.getRandomStyle();
       this.movers[i] = mover;
     }
   }
 
-  public positionStableSystem(userParam: OrbitUserParam): void {
+  private positionStableSystem(userParam: OrbitUserParam): void {
     const v = userParam.speedFactor;
     const movers = this.movers;
     let momentum: Vector;
@@ -78,17 +77,11 @@ export class OrbitService implements DrawService {
               */
     } while (!centered);
     console.log(
-      'Centered: ' +
-        iter +
-        ' (' +
-        Math.round(momentum.x) +
-        ',' +
-        Math.round(momentum.y) +
-        ')'
+      `Centered: ${iter} (${Math.round(momentum.x)}, ${Math.round(momentum.y)})`
     );
   }
 
-  public draw(delay: number, fullParam: OrbitParam): void {
+  draw(delay: number, fullParam: OrbitParam): void {
     //this.colorService.setDefaultColors();
     fullParam.canvasContext.lineWidth = 2;
     const orbitUserParam = fullParam.userParam as OrbitUserParam;
@@ -122,9 +115,5 @@ export class OrbitService implements DrawService {
       fxDraw(x, y, mover.mass, mover.param);
       this.space.checkEdges(mover);
     }
-  }
-
-  public getInfoMessage(): string {
-    return '';
   }
 }

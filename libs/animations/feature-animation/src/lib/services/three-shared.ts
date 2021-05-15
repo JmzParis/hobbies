@@ -1,5 +1,13 @@
-import * as THREE from 'three';
-import { BufferGeometry } from 'three';
+import {
+  AmbientLight,
+  BufferGeometry,
+  Group,
+  Object3D,
+  PerspectiveCamera,
+  PointLight,
+  Scene,
+  WebGLRenderer,
+} from 'three';
 import { Animation3dParam, Draw3dService, UserParam } from './scene-model';
 import {
   buildPerspectiveCamera,
@@ -9,8 +17,8 @@ import {
 
 function threeResize(
   canvas: HTMLCanvasElement,
-  camera: THREE.PerspectiveCamera,
-  renderer: THREE.WebGLRenderer
+  camera: PerspectiveCamera,
+  renderer: WebGLRenderer
 ) {
   const width = canvas.width;
   const height = canvas.height;
@@ -19,12 +27,12 @@ function threeResize(
   renderer.setSize(width, height);
 }
 
-export class Scene3dService implements Draw3dService {
+export class Scene3dBaseService implements Draw3dService {
   private fullParam!: Animation3dParam;
-  private renderer!: THREE.WebGLRenderer;
-  private camera!: THREE.PerspectiveCamera;
-  private scene!: THREE.Scene;
-  protected group!: THREE.Group;
+  private renderer!: WebGLRenderer;
+  private camera!: PerspectiveCamera;
+  private scene!: Scene;
+  protected group!: Group;
   private geometries = [] as BufferGeometry[];
 
   public resize(fullParam: Animation3dParam): void {
@@ -37,12 +45,26 @@ export class Scene3dService implements Draw3dService {
 
   protected createScene(fullParam: Animation3dParam): void {
     const canvas = fullParam.canvas;
-    this.camera = buildPerspectiveCamera(canvas);
-    this.scene = buildScene();
+    this.camera = this.customizeCamera(buildPerspectiveCamera(canvas));
+    this.scene = this.customizeScene(buildScene());
     //createOrbitControls(this.camera,canvas);
     //this.scene.add(buildGridHelper());
     this.scene.add(this.camera);
+
     this.renderer = buildRenderer(canvas);
+  }
+
+  protected customizeScene(scene: Scene): Scene {
+    scene.add(new AmbientLight(0xa0a0a0));
+    return scene;
+  }
+
+  protected customizeCamera(camera: PerspectiveCamera): PerspectiveCamera {
+    //camera.position.set( 0, 150, 500 );
+    camera.position.z = 20;
+    const light = new PointLight(0xffffff, 0.85);
+    camera.add(light);
+    return camera;
   }
 
   private recreateGroup(): void {
@@ -53,7 +75,7 @@ export class Scene3dService implements Draw3dService {
       this.geometries.map((g) => g.dispose());
       this.geometries = [];
     }
-    const group = new THREE.Group();
+    const group = new Group();
 
     if (r !== undefined) group.rotation.set(r.x, r.y, r.z);
 
@@ -84,12 +106,12 @@ export class Scene3dService implements Draw3dService {
 
   protected populateSceneGroup(): void {
     this.recreateGroup();
-    const userParam = this.fullParam.userParam;    
+    const userParam = this.fullParam.userParam;
     this.group.add(...this.buildSubject(userParam));
     this.setScale(userParam.scale);
   }
-  
-  protected buildSubject(up: UserParam): THREE.Object3D[]{    
+
+  protected buildSubject(up: UserParam): Object3D[] {
     return [];
   }
 }

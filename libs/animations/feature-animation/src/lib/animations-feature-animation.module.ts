@@ -29,23 +29,24 @@ import { SwarmComponent } from './components/swarm/swarm.component';
 import { SwarmParamComponent } from './components/swarm/swarm-param.component';
 import { ScrollComponent } from './components/scroll/scroll.component';
 import { ScrollParamComponent } from './components/scroll/scroll-param.component';
+import { Scene3dComponent } from './services/scene3d.component';
 import { HexagonComponent } from './components/hexagon/hexagon.component';
 import { HexagonParamComponent } from './components/hexagon/hexagon-param.component';
-import { Scene3dComponent } from './services/scene3d.component';
 import { TubeComponent } from './components/tube/tube.component';
 import { TubeParamComponent } from './components/tube/tube-param.component';
 import { TorusComponent } from './components/torus/torus.component';
 import { TorusParamComponent } from './components/torus/torus-param.component';
 import { SceneControlComponent } from './services/scene-control/scene-control.component';
 import { ParamDirective } from './services/param.directive';
-
+import { Orbit3dComponent } from './components/orbit3d/orbit3d.component';
+import { Orbit3dParamComponent } from './components/orbit3d/orbit3d-param.component';
 
 export const animationsFeatureAnimationModuleRoutes: Routes = [
-  //{ path: '', pathMatch: 'full', component: HexagonComponent },
   { path: '', pathMatch: 'full', component: AnimationsLayoutComponent },
   { path: 'spiral', component: GoldenSpiralComponent },
   { path: 'doublespiral', component: GoldenDoubleSpiralComponent },
   { path: 'orbit', component: OrbitComponent },
+  { path: 'orbit3d', component: Orbit3dComponent },
   { path: 'skin', component: SkinComponent },
   { path: 'swarm', component: SwarmComponent },
   { path: 'scroll', component: ScrollComponent },
@@ -72,6 +73,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
   ],
   declarations: [
     AnimationsLayoutComponent,
+    SceneControlComponent,
     SceneComponent,
     Scene3dComponent,
     GoldenSpiralComponent,
@@ -81,6 +83,8 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     SkinParamComponent,
     OrbitComponent,
     OrbitParamComponent,
+    Orbit3dComponent,
+    Orbit3dParamComponent,
     SwarmComponent,
     SwarmParamComponent,
     ScrollComponent,
@@ -92,8 +96,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     TorusComponent,
     TorusParamComponent,
     ReactiveColumnDirective,
-    SceneControlComponent,  
-    ParamDirective,  
+    ParamDirective,
   ],
   exports: [AnimationsLayoutComponent],
 })

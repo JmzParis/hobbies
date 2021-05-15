@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 
-import { Scene3dService } from '../../services/three-shared';
+import { Scene3dBaseService } from '../../services/three-shared';
 import { UserParam } from '../../services/scene-model';
 import { TubeUserParam } from './tube-param';
 
-import * as THREE from 'three';
 import { buildMesh, goldMaterial } from '../../services/three-factory';
+import { Curve, Object3D, TubeGeometry, Vector3 } from 'three';
 
-class CustomCurve extends THREE.Curve<THREE.Vector3> {
+class CustomCurve extends Curve<Vector3> {
   constructor(public scale = 1, private userParam: TubeUserParam) {
     super();
   }
 
-  getPoint(t: number, optionalTarget = new THREE.Vector3()): THREE.Vector3 {
+  getPoint(t: number, optionalTarget = new Vector3()): Vector3 {
     const p = this.userParam;
     const tx =
       p.rx *
@@ -34,11 +34,11 @@ class CustomCurve extends THREE.Curve<THREE.Vector3> {
 @Injectable({
   providedIn: 'root',
 })
-export class TubeService extends Scene3dService {
-  protected buildSubject(up: UserParam): THREE.Object3D[]{
+export class TubeService extends Scene3dBaseService {
+  protected buildSubject(up: UserParam): Object3D[] {
     const tup = up as TubeUserParam;
     const spline = new CustomCurve(tup.scale, tup);
-    const tubeGeometry = new THREE.TubeGeometry(
+    const tubeGeometry = new TubeGeometry(
       spline,
       tup.segments,
       tup.radius,

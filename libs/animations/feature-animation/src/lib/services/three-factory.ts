@@ -1,8 +1,25 @@
-import * as THREE from 'three';
+import {
+  AmbientLight,
+  BufferGeometry,
+  Color,
+  Curve,
+  DoubleSide,
+  Float32BufferAttribute,
+  GridHelper,
+  Material,
+  Mesh,
+  MeshBasicMaterial,
+  MeshPhongMaterial,
+  PerspectiveCamera,
+  PointLight,
+  Scene,
+  Vector3,
+  WebGLRenderer,
+} from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-export function buildRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
-  const renderer = new THREE.WebGLRenderer({
+export function buildRenderer(canvas: HTMLCanvasElement): WebGLRenderer {
+  const renderer = new WebGLRenderer({
     canvas: canvas,
     alpha: true, // transparent background
     antialias: true, // smooth edges
@@ -12,7 +29,10 @@ export function buildRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
   return renderer;
 }
 
-export function createOrbitControls(camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement):void{
+export function createOrbitControls(
+  camera: PerspectiveCamera,
+  canvas: HTMLCanvasElement
+): void {
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
   controls.enablePan = false;
@@ -21,37 +41,37 @@ export function createOrbitControls(camera: THREE.PerspectiveCamera, canvas: HTM
   controls.update();
 }
 
-export function buildGridHelper(): THREE.GridHelper {
-  const grid = new THREE.GridHelper(30, 30, 0xffffff, 0x404040);
+export function buildGridHelper(): GridHelper {
+  const grid = new GridHelper(30, 30, 0xffffff, 0x404040);
   grid.rotation.x = Math.PI * 0.5;
   return grid;
 }
 
-export const wireframeMaterial = new THREE.MeshBasicMaterial({
+export const wireframeMaterial = new MeshBasicMaterial({
   color: 0x000000,
   opacity: 0.3,
   wireframe: true,
   transparent: true,
 });
 
-export const goldMaterial = new THREE.MeshPhongMaterial({
+export const goldMaterial = new MeshPhongMaterial({
   color: 0xff8800,
-  side: THREE.DoubleSide,
+  side: DoubleSide,
 });
 
-export const cyanMaterial = new THREE.MeshPhongMaterial({
+export const cyanMaterial = new MeshPhongMaterial({
   color: 0x0088ff88,
-  side: THREE.DoubleSide,
+  side: DoubleSide,
 });
 
 export function buildMesh(
-  geometry: THREE.BufferGeometry,
-  material: THREE.Material,
+  geometry: BufferGeometry,
+  material: Material,
   wireframe = true
-): THREE.Mesh {
-  const mesh = new THREE.Mesh(geometry, material);
+): Mesh {
+  const mesh = new Mesh(geometry, material);
   if (wireframe) {
-    const wireframe = new THREE.Mesh(geometry, wireframeMaterial);
+    const wireframe = new Mesh(geometry, wireframeMaterial);
     mesh.add(wireframe);
   }
   return mesh;
@@ -59,35 +79,35 @@ export function buildMesh(
 
 export function buildPerspectiveCamera(
   canvas: HTMLCanvasElement
-): THREE.PerspectiveCamera {
-  const camera = new THREE.PerspectiveCamera(
+): PerspectiveCamera {
+  const camera = new PerspectiveCamera(
     75,
     canvas.width / canvas.height,
     0.1,
     1000
   );
-  
-	//camera.position.set( 0, 150, 500 );
-  camera.position.z = 20;
 
-  const light = new THREE.PointLight(0xffffff, 0.85);
-  camera.add(light);
   return camera;
 }
 
-export function buildScene(): THREE.Scene {
-  const scene = new THREE.Scene();
+export function buildScene(): Scene {
+  const scene = new Scene();
   //this.scene.background = new THREE.Color(0x505050);
-  scene.background = new THREE.Color(0x000000);
-  scene.add(new THREE.AmbientLight(0x303030));
+  scene.background = new Color(0x000000);
+  //scene.add(new AmbientLight(0x303030));
+  //scene.add(new AmbientLight(0xa0a0a0));
+  //const light = new PointLight(0xffffff, 1.5);
+  //light.position.set(0, 0, 0);
+  //scene.add(light);
+  //scene.add(new AmbientLight(0xfff000));
   return scene;
 }
 
 export function buildRibbon(
-  curves: THREE.Curve<THREE.Vector3>[],
+  curves: Curve<Vector3>[],
   segments: number
-): THREE.BufferGeometry {
-  const geometry = new THREE.BufferGeometry();
+): BufferGeometry {
+  const geometry = new BufferGeometry();
   const indices = [];
   const vertices = [];
   const widthSegments = curves.length;
@@ -118,10 +138,7 @@ export function buildRibbon(
   }
 
   geometry.setIndex(indices);
-  geometry.setAttribute(
-    'position',
-    new THREE.Float32BufferAttribute(vertices, 3)
-  );
+  geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
   geometry.computeVertexNormals();
   return geometry;
 }
