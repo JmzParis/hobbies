@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { Scene3dBaseService } from '../../services/three-shared';
 import { Animation3dParam, UserParam } from '../../services/scene-model';
 import {
+  AmbientLight,
   BoxGeometry,
   ExtrudeBufferGeometry,
   Group,
@@ -12,6 +13,7 @@ import {
   Object3D,
   PerspectiveCamera,
   PointLight,
+  Scene,
 } from 'three';
 
 const sin6 = Math.sin(Math.PI / 3.0);
@@ -22,6 +24,11 @@ const cos6 = Math.cos(Math.PI / 3.0);
 })
 export class HexagonService extends Scene3dBaseService {
   cube!: Mesh<BoxGeometry, MeshPhongMaterial>;
+
+  protected customizeScene(scene: Scene): Scene {
+    scene.add(new AmbientLight(0x303030));
+    return scene;
+  }
 
   protected buildSubject(up: UserParam): Object3D[] {
     const hup = up as HexagonUserParam;

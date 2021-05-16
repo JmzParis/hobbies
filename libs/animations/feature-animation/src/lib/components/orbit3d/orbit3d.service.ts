@@ -99,8 +99,28 @@ export class Orbit3dService extends Scene3dBaseService {
   }
 
   private buildSun(textureFlare0: Texture, textureFlare3: Texture): Object3D {
-    const light = new PointLight(0xffffff, 1.5, 2000);
-    light.color.setHSL(Math.random(), 1, 0.5);
+    const light = new PointLight(0xffffff, 1 + Math.random(), 2000);
+
+    switch (Math.round(Math.random() * 6)) {
+      case 0:
+        light.color.setHex(0xffaa00);
+        break;
+      case 1:
+        light.color.setHex(0xffff00);
+        break;
+      case 2:
+        light.color.setHex(0x00aaff);
+        break;
+      case 3:
+        light.color.setHex(0xffaaaa);
+        break;
+      case 4:
+        light.color.setHex(0xff0505);
+        break;
+      default:
+        light.color.setHex(0xffffff);
+        break;
+    }
 
     const lensflare = new Lensflare();
     lensflare.addElement(
