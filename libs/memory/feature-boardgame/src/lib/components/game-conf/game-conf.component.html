@@ -1,56 +1,199 @@
-<h2>Restart</h2>
-<form class='main'>
-    <label>Size:</label> 
-    <select name="boardSize" [(ngModel)]="selectedSize"> 
-        <option *ngFor="let size of sizes" [value]="size.value">{{size.title}}</option> 
-    </select>
-    <label>Player count:</label>
-    <select name="playerCount" [(ngModel)]="selectedPlayerCount"> 
-        <option *ngFor="let playerCount of playerCounts" [value]="playerCount.value">{{playerCount.title}}</option> 
-    </select>
-    <label>Flip delay:</label>
-    <select name="flipDelay" [(ngModel)]="selectedFlipDelay"> 
-        <option *ngFor="let flipDelay of flipDelays" [value]="flipDelay.value">{{flipDelay.title}}</option> 
-    </select>
-</form>    
-<h3>Options</h3>
-<form class='options'>
-    <label>No sound:</label>
-    <input type="checkbox" [checked]="config.sound.noSound" (change)="config.sound.noSound = !config.sound.noSound"/>
-    <label>Flip Card:</label>
-    <input type="checkbox" [checked]="config.sound.flipCardSound" (change)="config.sound.flipCardSound = !config.sound.flipCardSound"/>
-    <label>Found:</label>
-    <input type="checkbox" [checked]="config.sound.foundSound" (change)="config.sound.foundSound = !config.sound.foundSound"/>
-    <label>Win:</label>
-    <input type="checkbox" [checked]="config.sound.winSound" (change)="config.sound.winSound = !config.sound.winSound"/>
-    <br/>
-    <label>Background color when found:</label>
-    <input type="checkbox" [checked]="config.visual.backgroundColorWhenFound" (change)="config.visual.backgroundColorWhenFound = !config.visual.backgroundColorWhenFound"/>
-    <label>Red background when not found:</label>
-    <input type="checkbox" [checked]="config.visual.redBackgroundWhenNotFound" (change)="config.visual.redBackgroundWhenNotFound = !config.visual.redBackgroundWhenNotFound"/>
-    <br/>
-    <label>If pair found continue:</label>
-    <input type="checkbox" [checked]="config.game.ifFoundContinue" (change)="config.game.ifFoundContinue = !config.game.ifFoundContinue"/>        
-</form>
-
-<div *ngFor="let player of config.players; let i = index">
-    <h3>Player&nbsp;{{i+1}}</h3>
-    <form class='players'>            
-        <label>Nickname:</label>
-        <input name="name" type="text" [(ngModel)]="player.name" [ngModelOptions]="{standalone: true}"/>
-        <label>Avatar:</label>
-        <input name="avatar" type="text" [(ngModel)]="player.avatar" [ngModelOptions]="{standalone: true}"/>
-        <label>Color:</label>
-        <input name="backgroundColor" type="text" [(ngModel)]="player.backgroundColor" [ngModelOptions]="{standalone: true}"/>
-    </form>
-</div>        
-
-<br/>
-<button (click)="reset(selectedSize, selectedPlayerCount, selectedFlipDelay)">Restart</button>
-
-<br/><br/><br/>
-<div class='attribution'>Icons made by 
-    <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> 
-    and <a href="https://www.freepik.com" title="Freepik">Freepik</a> 
-    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+<div class="tab-panels">
+  <p-tabView>
+    <p-tabPanel header="General">
+      <div class="p-fluid">
+        <div class="p-field p-grid">
+          <label for="size" class="p-col-6 p-mb-4 p-md-4 p-mb-md-0"
+            >Size:</label
+          >
+          <div class="p-col-6 p-md-8">
+            <p-dropdown
+              inputId="size"
+              [options]="sizes"
+              [(ngModel)]="selectedSize"
+              optionLabel="title"
+              optionValue="value"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="p-field p-grid">
+          <label for="playerCount" class="p-col-6 p-mb-4 p-md-4 p-mb-md-0"
+            >Player count:</label
+          >
+          <div class="p-col-6 p-md-8">
+            <p-dropdown
+              inputId="playerCount"
+              [options]="playerCounts"
+              [(ngModel)]="selectedPlayerCount"
+              optionLabel="title"
+              optionValue="value"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="p-field p-grid">
+          <label for="flipDelay" class="p-col-6 p-mb-4 p-md-4 p-mb-md-0"
+            >Flip delay:</label
+          >
+          <div class="p-col-6 p-md-8">
+            <p-dropdown
+              inputId="flipDelay"
+              [options]="flipDelays"
+              [(ngModel)]="selectedFlipDelay"
+              optionLabel="title"
+              optionValue="value"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Sounds">
+      <div class="p-field-checkbox">
+        <p-checkbox
+          name="noSound"
+          [binary]="true"
+          [(ngModel)]="config.sound.noSound"
+          inputId="noSound"
+        ></p-checkbox>
+        <label for="noSound">No sound</label>
+      </div>
+      <div class="p-field-checkbox">
+        <p-checkbox
+          name="flipCardSound"
+          [binary]="true"
+          [(ngModel)]="config.sound.flipCardSound"
+          inputId="flipCardSound"
+        ></p-checkbox>
+        <label for="flipCardSound">Flip Card sound</label>
+      </div>
+      <div class="p-field-checkbox">
+        <p-checkbox
+          name="foundSound"
+          [binary]="true"
+          [(ngModel)]="config.sound.foundSound"
+          inputId="foundSound"
+        ></p-checkbox>
+        <label for="foundSound">Found sound</label>
+      </div>
+      <div class="p-field-checkbox">
+        <p-checkbox
+          name="winSound"
+          [binary]="true"
+          [(ngModel)]="config.sound.winSound"
+          inputId="winSound"
+        ></p-checkbox>
+        <label for="winSound">Win sound</label>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Gameplay">
+      <div class="p-field-checkbox">
+        <p-checkbox
+          name="backgroundColorWhenFound"
+          [binary]="true"
+          [(ngModel)]="config.visual.backgroundColorWhenFound"
+          inputId="backgroundColorWhenFound"
+        ></p-checkbox>
+        <label for="backgroundColorWhenFound"
+          >Background color when found</label
+        >
+      </div>
+      <div class="p-field-checkbox">
+        <p-checkbox
+          name="redBackgroundWhenNotFound"
+          [binary]="true"
+          [(ngModel)]="config.visual.redBackgroundWhenNotFound"
+          inputId="redBackgroundWhenNotFound"
+        ></p-checkbox>
+        <label for="redBackgroundWhenNotFound"
+          >Red background when not found</label
+        >
+      </div>
+      <br />
+      <div class="p-field-checkbox">
+        <p-checkbox
+          name="ifFoundContinue"
+          [binary]="true"
+          [(ngModel)]="config.game.ifFoundContinue"
+          inputId="ifFoundContinue"
+        ></p-checkbox>
+        <label for="ifFoundContinue">If pair found continue</label>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Players">
+      <p-tabView>
+        <p-tabPanel
+          *ngFor="
+            let player of config.players.slice(0, selectedPlayerCount);
+            let i = index
+          "
+          [header]="'Player&nbsp;' + (i + 1)"
+        >
+          <div class="p-fluid">
+            <div class="p-field p-grid">
+              <label
+                [for]="'nickname' + i"
+                class="p-col-6 p-mb-4 p-md-4 p-mb-md-0"
+                >Nickname:</label
+              >
+              <div class="p-col-6 p-md-8">
+                <input
+                  [id]="'nickname' + i"
+                  type="text"
+                  [(ngModel)]="player.name"
+                  pInputText
+                />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label
+                [for]="'avatar' + i"
+                class="p-col-6 p-mb-4 p-md-4 p-mb-md-0"
+                >Avatar:</label
+              >
+              <div class="p-col-6 p-md-8">
+                <input
+                  [id]="'avatar' + i"
+                  type="text"
+                  [(ngModel)]="player.avatar"
+                  pInputText
+                />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label
+                [for]="'backgroundColor' + i"
+                class="p-col-6 p-mb-4 p-md-4 p-mb-md-0"
+                >Color:</label
+              >
+              <div class="p-col-6 p-md-8">
+                <input
+                  [id]="'backgroundColor' + i"
+                  type="text"
+                  [(ngModel)]="player.backgroundColor"
+                  pInputText
+                />
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </p-tabPanel>
+  </p-tabView>
+</div>
+<br />
+<div class="p-d-flex p-jc-between">
+  <div class="attribution">
+    Icons made by
+    <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons"
+      >Flat Icons</a
+    >
+    and <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+    <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+  </div>
+  <p-button
+    pRipple
+    label="Play"
+    icon="pi pi-check"
+    styleClass="p-button-lg"
+    (click)="reset(selectedSize, selectedPlayerCount, selectedFlipDelay)"
+  ></p-button>
 </div>

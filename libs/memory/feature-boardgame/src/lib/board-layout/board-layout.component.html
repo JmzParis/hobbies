@@ -1,2 +1,40 @@
-<jz-game-conf></jz-game-conf>
-<jz-cardboard></jz-cardboard>    
+<p-dialog
+  header="Configuration"
+  [(visible)]="displayConfig"
+  [style]="{ width: '500px', 'min-width': '500px', height: '478px' }"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <jz-game-conf (closed)="onConfigClosed($event)"></jz-game-conf>
+</p-dialog>
+<div class="main-contener p-d-flex p-jc-evenly p-flex-wrap">
+  <div class="left-column p-d-flex p-flex-column">
+    <div class="config-area">
+      <h1>Memory</h1>
+      <p-button
+        (click)="displayConfig = true"
+        icon="pi pi-external-link"
+        label="Configuration"
+      ></p-button>
+    </div>
+    <div class="player-area">
+      <div
+        *ngIf="gameConf$ | async as gameConf"
+        class="mainContainer p-d-flex p-jc-evenly p-flex-xl-column p-flex-row"
+        [style.--playerid0backcolor]="
+          gameConf.config.players[0].backgroundColor
+        "
+        [style.--playerid1backcolor]="
+          gameConf.config.players[1].backgroundColor
+        "
+      >
+        <jz-player-score
+          *ngFor="let playerId of gameConf.players.keys()"
+          [playerId]="playerId"
+        ></jz-player-score>
+      </div>
+    </div>
+  </div>
+  <jz-cardboard></jz-cardboard>
+</div>

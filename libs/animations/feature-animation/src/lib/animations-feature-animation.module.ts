@@ -59,6 +59,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+
     SharedUtilKineticModule,
     SharedUtilDrawingModule,
     SharedUtilPotModule,
@@ -69,6 +70,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     SliderModule,
     DropdownModule,
     CheckboxModule,
+
     RouterModule.forChild(animationsFeatureAnimationModuleRoutes),
   ],
   declarations: [

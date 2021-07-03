@@ -1,31 +1,24 @@
-.mainContainer {
-  display: flex;
-  .cardboard {
-    /* background-color: darkorange; */
-    /* width: 600px; */
+.cardboard {
+  display: inline-grid;
+  grid-gap: calc((var(--cardwidth) / 10) * 1px);
+  grid-template-columns: repeat(
+    var(--columncount),
+    calc(var(--cardwidth) * 1px)
+  );
+  grid-template-rows: repeat(var(--columncount), calc(var(--cardwidth) * 1px));
+  background-color: #333;
 
-    display: inline-grid;
-    grid-gap: calc((var(--cardwidth) / 10) * 1px);
-    grid-template-columns: repeat(
-      var(--columncount),
-      calc(var(--cardwidth) * 1px)
-    );
-    grid-template-rows: repeat(
-      var(--columncount),
-      calc(var(--cardwidth) * 1px)
-    );
-    /* grid-auto-flow: column;  var(--cardWidth) var(--test)*/
+  //color: #fff;
+  border-radius: 2%; //10px;
 
-    background-color: #333;
-    color: #fff;
-    border-radius: 2%; //10px;
-    margin: 1%; // 10px;
-    padding: 2%; //20px;
-    /* font-size: 150%;*/
+  margin: 10px;
+  padding: 20px;
+
+  .found.playerid0 {
+    background-color: var(--playerid0backcolor);
   }
-  .playerContainer {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
+
+  .found.playerid1 {
+    background-color: var(--playerid1backcolor);
   }
 }

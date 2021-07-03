@@ -1,128 +1,37 @@
 :host {
-  display: inline-block;
-  margin: 10px;
-  padding: 20px;
-  background-color: #333;
-  color: #e6bf72;
+  display: block;
+
+  //background-color: rgb(65, 66, 58);
+  width: 450px;
+  min-width: 200px;
+  height: 386px;
+  border: 5px solid #e6bf72;
   border-radius: 10px;
+  padding: 10px;
+}
 
-  form.main {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    grid-gap: 5px;
-
-    label {
-      grid-column: 1 / 2;
-    }
-
-    input,
-    select,
-    button {
-      grid-column: 2 / 3;
-    }
-
-    select {
-      // A reset of styles, including removing the default dropdown arrow
-      appearance: auto;
-      // Additional resets for further consistency
-
-      padding: 0 1em 0 0;
-      margin: 0;
-      width: 100%;
-      min-width: 15ch;
-      max-width: 30ch;
-      //border: none;
-      border: 1px solid 1;
-      border-radius: 0.25em;
-      padding: 0.25em 0.5em;
-      font-size: 1.25rem;
-      cursor: pointer;
-      line-height: 1.1;
-      background-color: #444;
-      color: #e6bf72;
-    }
+.attribution {
+  width: 300px;
+  /* unvisited link */
+  a:link {
+    color: white;
   }
-  form.options {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    grid-gap: 5px;
-    label {
-      grid-column: 1 / 2;
-    }
 
-    input,
-    select,
-    button {
-      grid-column: 3 / 3;
-    }
-
-    input[type='checkbox'] {
-      cursor: pointer;
-      min-width: 15ch;
-      max-width: 30ch;
-      padding: 0.25em 0.5em;
-      font-size: 1.25rem;
-      transform: scale(1.8);
-    }
+  /* visited link */
+  a:visited {
+    color: cyan;
   }
-  form.players {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    grid-gap: 5px;
 
-    label {
-      grid-column: 1 / 2;
-    }
-
-    input,
-    select,
-    button {
-      grid-column: 2 / 3;
-    }
-    input[type='text'] {
-      cursor: pointer;
-      padding: 0.25em 0.5em;
-      font-size: 1rem;
-
-      //border: 1px solid 1;
-      color: #e6bf72;
-      padding: 4px;
-
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      border: 1px solid rgb(118, 118, 118);
-      border-radius: 0.25em;
-      background-color: #444;
-    }
+  /* mouse over link */
+  a:hover {
+    color: pink;
   }
-  button {
-    cursor: pointer;
-    min-width: 15ch;
-    max-width: 30ch;
-    padding: 0.25em 0.5em;
-    font-size: 1.25rem;
-    background-color: #e6bf72;
-    color: #333;
+
+  /* selected link */
+  a:active {
+    color: cyan;
   }
-  .attribution {    
-    /* unvisited link */
-    a:link {
-      color: white;
-    }
-
-    /* visited link */
-    a:visited {
-      color: cyan;
-    }
-
-    /* mouse over link */
-    a:hover {
-      color: blue;
-    }
-
-    /* selected link */
-    a:active {
-      color: cyan;
-    }
-  }
+}
+.tab-panels {
+  height: 280px;
 }

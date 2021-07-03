@@ -1,7 +1,26 @@
 :host {
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;    
-    background-color: black;
+  display: block;
+  //width: 100vw;
+  //height: 50vh;
+  background-color: black;
+}
+.left-column {
+  .config-area {
+    margin: 10px;
+    padding: 20px;
+    color: #e6bf72;
+    border: 6px solid #e6bf72;
+    border-radius: 10px;
+    h1 {
+      margin: 0px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .player-area {
+    // border: 2px solid #e6bf72;
+    // border-radius: 10px;
+    margin: 10px;
+    padding: 10 px;
+  }
 }

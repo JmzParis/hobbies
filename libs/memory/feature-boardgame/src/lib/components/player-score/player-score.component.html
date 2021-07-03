@@ -1,26 +1,36 @@
-<div *ngIf="player$ | async as player" class="player {{'playerid'+player.playerId}}" [ngClass]="player.isActive ? 'active-player' : 'inactive-player'">
-    <img *ngIf="player.avatar" src="{{player.avatar}}" alt="avatar"/> 
-    <h1>{{player.name}}</h1>    
-    <h2>Score</h2>
-    <span>Try:&nbsp;{{player.tryCount}}</span>
-    <br>
-    <span>Trivial:&nbsp;{{player.trivialCount}}</span>
-    <br>
-    <span>Failed:&nbsp;{{player.failedCount}}</span>
-    <br>
-    <span class="bigger">Found:&nbsp;{{player.foundCount}}&nbsp;({{player.foundPercent | number}}%)</span>
-    <br>
-    <span class="bigger">Elapse:&nbsp;{{ player.timerTickCount * 1000 | date:'H:mm:ss':'UTC'}}</span>
-    <br>
-    <div *ngIf="player.isWinner" class="win swirl-in-fwd">
-        <span>Congratulation</span>
-        <br>
-        <span>You&nbsp;Win!</span>
+<div
+  *ngIf="player$ | async as player"
+  class="player"
+  [ngClass]="player.isActive ? 'active-player' : 'inactive-player'"
+>
+  <div class="top-pics p-d-flex p-jc-between">
+    <img *ngIf="player.avatar" src="{{ player.avatar }}" alt="avatar" />
+    <div class="player-color-area {{ 'playerid' + player.playerId }}"></div>
+  </div>
+  <h1>{{ player.name }}</h1>
+  <span class="bigger"
+    >Found:&nbsp;{{ player.foundCount }}&nbsp;({{
+      player.foundPercent | number
+    }}%)</span
+  >
+  <br />
+  <div class="p-d-flex p-jc-between">
+    <div class="p-d-flex p-flex-column p-jc-around">
+      <span>Try:&nbsp;{{ player.tryCount }}</span>
+      <span>Trivial:&nbsp;{{ player.trivialCount }}</span>
+      <span>Failed:&nbsp;{{ player.failedCount }}</span>
     </div>
-</div>        
-
-<!-- 
-<span>Pict: {{picture$ | async}}</span>
-<br>
-<img src="{{picture$ | async}}" width='150px' height='150px'/>
--->
+    <div *ngIf="!player.isWinner" class="p-d-flex p-flex-column p-jc-end">
+      <div class="hourglass-frame"><div class="hourglass"></div></div>
+    </div>
+  </div>
+  <span class="bigger"
+    >Elapse:&nbsp;{{
+      player.timerTickCount * 1000 | date: 'H:mm:ss':'UTC'
+    }}</span
+  >
+  <br />
+  <div *ngIf="player.isWinner" class="win swirl-in-fwd">
+    <span>You&nbsp;Win!</span>
+  </div>
+</div>

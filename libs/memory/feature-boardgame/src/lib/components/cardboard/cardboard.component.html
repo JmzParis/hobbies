@@ -1,12 +1,14 @@
-<div *ngIf="gameConf$ | async as gameConf" class="mainContainer"
-        [style.--playerid0backcolor]='gameConf.config.players[0].backgroundColor'
-        [style.--playerid1backcolor]='gameConf.config.players[1].backgroundColor'>
-    <div class="cardboard" 
-        [style.--columncount]='gameConf.config.columnCount'
-        [style.--cardwidth]='board.cardWidth'>
-        <jz-card *ngFor="let cardId of gameConf.cards.keys()" [cardId]="cardId" class="card jello-horizontal"></jz-card>        
-    </div>    
-    <div class="playerContainer">
-        <jz-player-score *ngFor="let playerId of gameConf.players.keys()" [playerId]="playerId" ></jz-player-score>        
-    </div>
+<div
+  *ngIf="gameConf$ | async as gameConf"
+  class="cardboard"
+  [style.--columncount]="gameConf.config.columnCount"
+  [style.--cardwidth]="board.cardWidth"
+  [style.--playerid0backcolor]="gameConf.config.players[0].backgroundColor"
+  [style.--playerid1backcolor]="gameConf.config.players[1].backgroundColor"
+>
+  <jz-card
+    *ngFor="let cardId of gameConf.cards.keys()"
+    [cardId]="cardId"
+    class="card jello-horizontal"
+  ></jz-card>
 </div>
