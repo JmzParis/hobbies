@@ -1,9 +1,14 @@
 {
   "npmScope": "hobbies",
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -12,25 +17,55 @@
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   },
   "projects": {
-    "website": { "tags": ["scope:memory,animation", "type:app"] },
-    "website-e2e": { "tags": [], "implicitDependencies": ["website"] },
-
-    "memory": { "tags": ["scope:memory", "type:app"] },
-    "memory-e2e": { "tags": [], "implicitDependencies": ["memory"] },
-    "memory-feature-boardgame": { "tags": ["scope:memory", "type:feature"] },
-
-    "animations": { "tags": ["scope:animation", "type:app"] },
-    "animations-e2e": { "tags": [], "implicitDependencies": ["animations"] },
+    "animations": {
+      "tags": ["scope:animation", "type:app"]
+    },
+    "animations-e2e": {
+      "tags": [],
+      "implicitDependencies": ["animations"]
+    },
     "animations-feature-animation": {
       "tags": ["scope:animation", "type:feature"]
     },
-
-    "shared-util-kinetic": { "tags": ["scope:shared", "type:util"] },
-    "shared-util-pot": { "tags": ["scope:shared", "type:util"] },
-    "shared-util-drawing": { "tags": ["scope:shared", "type:util"] }
+    "memory": {
+      "tags": ["scope:memory", "type:app"]
+    },
+    "memory-e2e": {
+      "tags": [],
+      "implicitDependencies": ["memory"]
+    },
+    "memory-feature-boardgame": {
+      "tags": ["scope:memory", "type:feature"]
+    },
+    "shared-util-drawing": {
+      "tags": ["scope:shared", "type:util"]
+    },
+    "shared-util-kinetic": {
+      "tags": ["scope:shared", "type:util"]
+    },
+    "shared-util-pot": {
+      "tags": ["scope:shared", "type:util"]
+    },
+    "website": {
+      "tags": ["scope:memory,animation", "type:app"]
+    },
+    "website-e2e": {
+      "tags": [],
+      "implicitDependencies": ["website"]
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

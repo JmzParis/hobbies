@@ -34,231 +34,6 @@
   },
   "defaultProject": "website",
   "projects": {
-    "memory": {
-      "projectType": "application",
-      "root": "apps/memory",
-      "sourceRoot": "apps/memory/src",
-      "prefix": "jz",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/memory",
-            "index": "apps/memory/src/index.html",
-            "main": "apps/memory/src/main.ts",
-            "polyfills": "apps/memory/src/polyfills.ts",
-            "tsConfig": "apps/memory/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "apps/memory/src/favicon.ico",
-              "apps/memory/src/.htaccess",
-              "apps/memory/src/assets",
-              {
-                "glob": "**/*",
-                "input": "libs/memory/feature-boardgame/src/assets",
-                "output": "assets"
-              }
-            ],
-            "styles": [
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/mdc-dark-deeppurple/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeflex/primeflex.css",
-              "apps/memory/src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/memory/src/environments/environment.ts",
-                  "with": "apps/memory/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "memory:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "memory:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "memory:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/memory/src/**/*.ts",
-              "apps/memory/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/memory"],
-          "options": {
-            "jestConfig": "apps/memory/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "memory-e2e": {
-      "root": "apps/memory-e2e",
-      "sourceRoot": "apps/memory-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/memory-e2e/cypress.json",
-            "tsConfig": "apps/memory-e2e/tsconfig.e2e.json",
-            "devServerTarget": "memory:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "memory:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/memory-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "memory-feature-boardgame": {
-      "projectType": "library",
-      "root": "libs/memory/feature-boardgame",
-      "sourceRoot": "libs/memory/feature-boardgame/src",
-      "prefix": "jz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/memory/feature-boardgame/src/**/*.ts",
-              "libs/memory/feature-boardgame/src/**/*.html"
-            ]            
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/memory/feature-boardgame"],
-          "options": {
-            "jestConfig": "libs/memory/feature-boardgame/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "shared-util-kinetic": {
-      "projectType": "library",
-      "root": "libs/shared/util-kinetic",
-      "sourceRoot": "libs/shared/util-kinetic/src",
-      "prefix": "jz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/util-kinetic/src/**/*.ts",
-              "libs/shared/util-kinetic/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/util-kinetic"],
-          "options": {
-            "jestConfig": "libs/shared/util-kinetic/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "shared-util-pot": {
-      "projectType": "library",
-      "root": "libs/shared/util-pot",
-      "sourceRoot": "libs/shared/util-pot/src",
-      "prefix": "jz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/util-pot/src/**/*.ts",
-              "libs/shared/util-pot/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/util-pot"],
-          "options": {
-            "jestConfig": "libs/shared/util-pot/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "shared-util-drawing": {
-      "projectType": "library",
-      "root": "libs/shared/util-drawing",
-      "sourceRoot": "libs/shared/util-drawing/src",
-      "prefix": "jz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/util-drawing/src/**/*.ts",
-              "libs/shared/util-drawing/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/util-drawing"],
-          "options": {
-            "jestConfig": "libs/shared/util-drawing/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "animations": {
       "projectType": "application",
       "root": "apps/animations",
@@ -273,7 +48,6 @@
             "main": "apps/animations/src/main.ts",
             "polyfills": "apps/animations/src/polyfills.ts",
             "tsConfig": "apps/animations/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/animations/src/favicon.ico",
               "apps/animations/src/.htaccess",
@@ -289,8 +63,15 @@
               "node_modules/primeng/resources/themes/mdc-dark-deeppurple/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeflex/primeflex.css",
-              "apps/animations/src/styles.scss"],
-            "scripts": []
+              "apps/animations/src/styles.scss"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -350,7 +131,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/animations"],
+          "outputs": [
+            "coverage/apps/animations"
+          ],
           "options": {
             "jestConfig": "apps/animations/jest.config.js",
             "passWithNoTests": true
@@ -379,7 +162,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/animations-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/animations-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -401,9 +186,254 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/animations/feature-animation"],
+          "outputs": [
+            "coverage/libs/animations/feature-animation"
+          ],
           "options": {
             "jestConfig": "libs/animations/feature-animation/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "memory": {
+      "projectType": "application",
+      "root": "apps/memory",
+      "sourceRoot": "apps/memory/src",
+      "prefix": "jz",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/memory",
+            "index": "apps/memory/src/index.html",
+            "main": "apps/memory/src/main.ts",
+            "polyfills": "apps/memory/src/polyfills.ts",
+            "tsConfig": "apps/memory/tsconfig.app.json",
+            "assets": [
+              "apps/memory/src/favicon.ico",
+              "apps/memory/src/.htaccess",
+              "apps/memory/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/memory/feature-boardgame/src/assets",
+                "output": "assets"
+              }
+            ],
+            "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/mdc-dark-deeppurple/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "apps/memory/src/styles.scss"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/memory/src/environments/environment.ts",
+                  "with": "apps/memory/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "memory:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "memory:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "memory:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/memory/src/**/*.ts",
+              "apps/memory/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/memory"
+          ],
+          "options": {
+            "jestConfig": "apps/memory/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "memory-e2e": {
+      "root": "apps/memory-e2e",
+      "sourceRoot": "apps/memory-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/memory-e2e/cypress.json",
+            "tsConfig": "apps/memory-e2e/tsconfig.e2e.json",
+            "devServerTarget": "memory:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "memory:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/memory-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "memory-feature-boardgame": {
+      "projectType": "library",
+      "root": "libs/memory/feature-boardgame",
+      "sourceRoot": "libs/memory/feature-boardgame/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/memory/feature-boardgame/src/**/*.ts",
+              "libs/memory/feature-boardgame/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/memory/feature-boardgame"
+          ],
+          "options": {
+            "jestConfig": "libs/memory/feature-boardgame/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-drawing": {
+      "projectType": "library",
+      "root": "libs/shared/util-drawing",
+      "sourceRoot": "libs/shared/util-drawing/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util-drawing/src/**/*.ts",
+              "libs/shared/util-drawing/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/util-drawing"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/util-drawing/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-kinetic": {
+      "projectType": "library",
+      "root": "libs/shared/util-kinetic",
+      "sourceRoot": "libs/shared/util-kinetic/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util-kinetic/src/**/*.ts",
+              "libs/shared/util-kinetic/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/util-kinetic"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/util-kinetic/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-pot": {
+      "projectType": "library",
+      "root": "libs/shared/util-pot",
+      "sourceRoot": "libs/shared/util-pot/src",
+      "prefix": "jz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util-pot/src/**/*.ts",
+              "libs/shared/util-pot/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/util-pot"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/util-pot/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -423,11 +453,10 @@
             "main": "apps/website/src/main.ts",
             "polyfills": "apps/website/src/polyfills.ts",
             "tsConfig": "apps/website/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/website/src/favicon.ico",
               "apps/website/src/.htaccess",
-              "apps/website/src/assets",  
+              "apps/website/src/assets",
               {
                 "glob": "**/*",
                 "input": "libs/memory/feature-boardgame/src/assets",
@@ -444,8 +473,15 @@
               "node_modules/primeng/resources/themes/mdc-dark-deeppurple/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeflex/primeflex.css",
-              "apps/website/src/styles.scss"],
-            "scripts": []
+              "apps/website/src/styles.scss"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -505,7 +541,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/website"],
+          "outputs": [
+            "coverage/apps/website"
+          ],
           "options": {
             "jestConfig": "apps/website/jest.config.js",
             "passWithNoTests": true
@@ -534,7 +572,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/website-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/website-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
