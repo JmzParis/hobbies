@@ -6,3 +6,21 @@ body {
   background: black;
   //font-size: 30px;
 }
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .hidden-mobile {
+    display: none;
+  }
+}
+
+@media (orientation: landscape)  {
+  .hidden-on-big-screen {
+    display: none;
+  }
+}
+
+@media (min-width: 767px) {
+  .hidden-on-big-screen {
+    display: none;
+  }
+}

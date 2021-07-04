@@ -10,13 +10,16 @@
 </p-dialog>
 <div class="main-contener p-d-flex p-jc-evenly p-flex-wrap">
   <div class="left-column p-d-flex p-flex-column">
-    <div class="config-area">
+    <div class="hidden-mobile config-area">
       <h1>Memory</h1>
       <p-button
         (click)="displayConfig = true"
         icon="pi pi-external-link"
         label="Configuration"
       ></p-button>
+    </div>
+    <div class="hidden-on-big-screen config-area-mobile">
+      <h1>Memory</h1>
     </div>
     <div class="player-area">
       <div
