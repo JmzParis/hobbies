@@ -40,6 +40,8 @@ import { SceneControlComponent } from './services/scene-control/scene-control.co
 import { ParamDirective } from './services/param.directive';
 import { Orbit3dComponent } from './components/orbit3d/orbit3d.component';
 import { Orbit3dParamComponent } from './components/orbit3d/orbit3d-param.component';
+import { Swarm3dComponent } from './components/swarm3d/swarm3d.component';
+import { Swarm3dParamComponent } from './components/swarm3d/swarm3d-param.component';
 
 export const animationsFeatureAnimationModuleRoutes: Routes = [
   { path: '', pathMatch: 'full', component: AnimationsLayoutComponent },
@@ -49,6 +51,7 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
   { path: 'orbit3d', component: Orbit3dComponent },
   { path: 'skin', component: SkinComponent },
   { path: 'swarm', component: SwarmComponent },
+  { path: 'swarm3d', component: Swarm3dComponent },
   { path: 'scroll', component: ScrollComponent },
   { path: 'hexagon', component: HexagonComponent },
   { path: 'tube', component: TubeComponent },
@@ -97,6 +100,8 @@ export const animationsFeatureAnimationModuleRoutes: Routes = [
     TubeParamComponent,
     TorusComponent,
     TorusParamComponent,
+    Swarm3dComponent,
+    Swarm3dParamComponent,
     ReactiveColumnDirective,
     ParamDirective,
   ],
