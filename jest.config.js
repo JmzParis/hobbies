@@ -1,5 +1,8 @@
+const { getJestProjects } = require('@nrwl/jest');
+
 module.exports = {
   projects: [
+    ...getJestProjects(),
     '<rootDir>/apps/memory',
     '<rootDir>/libs/memory/feature-boardgame',
     '<rootDir>/libs/shared/util-kinetic',
