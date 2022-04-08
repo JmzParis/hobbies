@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/memory/feature-boardgame",
+  "sourceRoot": "libs/memory/feature-boardgame/src",
+  "prefix": "jz",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/memory/feature-boardgame"],
+      "options": {
+        "jestConfig": "libs/memory/feature-boardgame/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/memory/feature-boardgame/src/**/*.ts",
+          "libs/memory/feature-boardgame/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:memory", "type:feature"]
+}

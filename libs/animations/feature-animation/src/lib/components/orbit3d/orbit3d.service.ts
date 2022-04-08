@@ -32,18 +32,20 @@ import {
 export class Orbit3dService extends Scene3dBaseService {
   private movers: Mover3d[] = [];
 
-  protected customizeScene(scene: Scene): Scene {
+  protected override customizeScene(scene: Scene): Scene {
     scene.add(new AmbientLight(0x303030));
     return scene;
   }
 
-  protected customizeCamera(camera: PerspectiveCamera): PerspectiveCamera {
+  protected override customizeCamera(
+    camera: PerspectiveCamera
+  ): PerspectiveCamera {
     //camera.position.set( 0, 150, 500 );
     camera.position.z = 12;
     return camera;
   }
 
-  protected buildSubject(up: UserParam): Object3D[] {
+  protected override buildSubject(up: UserParam): Object3D[] {
     const orbit3dUserParam = up as Orbit3dUserParam;
     const system = this.buildSystem(orbit3dUserParam);
     this.positionStableSystem(orbit3dUserParam);
@@ -176,7 +178,7 @@ export class Orbit3dService extends Scene3dBaseService {
     )}).l=${Math.round(v.length())}`;
   }
 
-  public draw(delay: number, fullParam: Animation3dParam): void {
+  public override draw(delay: number, fullParam: Animation3dParam): void {
     super.draw(delay, fullParam);
 
     const orbitUserParam = fullParam.userParam as Orbit3dUserParam;

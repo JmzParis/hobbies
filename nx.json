@@ -3,16 +3,16 @@
   "affected": {
     "defaultBase": "master"
   },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
   "implicitDependencies": {
-    "angular.json": "*",
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.base.json": "*",
-    "tslint.json": "*",
-    ".eslintrc.json": "*",
-    "nx.json": "*"
+    ".eslintrc.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -22,44 +22,6 @@
       }
     }
   },
-  "projects": {
-    "animations": {
-      "tags": ["scope:animation", "type:app"]
-    },
-    "animations-e2e": {
-      "tags": [],
-      "implicitDependencies": ["animations"]
-    },
-    "animations-feature-animation": {
-      "tags": ["scope:animation", "type:feature"]
-    },
-    "memory": {
-      "tags": ["scope:memory", "type:app"]
-    },
-    "memory-e2e": {
-      "tags": [],
-      "implicitDependencies": ["memory"]
-    },
-    "memory-feature-boardgame": {
-      "tags": ["scope:memory", "type:feature"]
-    },
-    "shared-util-drawing": {
-      "tags": ["scope:shared", "type:util"]
-    },
-    "shared-util-kinetic": {
-      "tags": ["scope:shared", "type:util"]
-    },
-    "shared-util-pot": {
-      "tags": ["scope:shared", "type:util"]
-    },
-    "website": {
-      "tags": ["scope:memory,animation", "type:app"]
-    },
-    "website-e2e": {
-      "tags": [],
-      "implicitDependencies": ["website"]
-    }
-  },
   "targetDependencies": {
     "build": [
       {
@@ -67,5 +29,21 @@
         "projects": "dependencies"
       }
     ]
-  }
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "website"
 }

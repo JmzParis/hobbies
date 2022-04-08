@@ -21,7 +21,7 @@ class TorusCurve extends Curve<Vector3> {
     super();
   }
 
-  getPoint(t: number, optionalTarget = new Vector3()): Vector3 {
+  override getPoint(t: number, optionalTarget = new Vector3()): Vector3 {
     const p = this.userParam;
     const theta2 = p.s2 * 2 * Math.PI * t;
     const theta1 = p.phi + p.s1 * 2 * Math.PI * t;
@@ -39,7 +39,7 @@ class TorusCurve extends Curve<Vector3> {
   providedIn: 'root',
 })
 export class TorusService extends Scene3dBaseService {
-  protected buildSubject(up: UserParam): Object3D[] {
+  protected override buildSubject(up: UserParam): Object3D[] {
     const tup = up as TorusUserParam;
     return tup.tube ? this.buildTorusTube(tup) : this.buildTorusRibbons(tup);
   }

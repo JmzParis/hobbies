@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/animations/feature-animation",
+  "sourceRoot": "libs/animations/feature-animation/src",
+  "prefix": "jz",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/animations/feature-animation"],
+      "options": {
+        "jestConfig": "libs/animations/feature-animation/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/animations/feature-animation/src/**/*.ts",
+          "libs/animations/feature-animation/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:animation", "type:feature"]
+}

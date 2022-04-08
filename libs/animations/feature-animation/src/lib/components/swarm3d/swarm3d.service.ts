@@ -32,18 +32,20 @@ import {
 export class Swarm3dService extends Scene3dBaseService {
   private movers: Mover3d[] = [];
 
-  protected customizeScene(scene: Scene): Scene {
+  protected override customizeScene(scene: Scene): Scene {
     scene.add(new AmbientLight(0x303030));
     return scene;
   }
 
-  protected customizeCamera(camera: PerspectiveCamera): PerspectiveCamera {
+  protected override customizeCamera(
+    camera: PerspectiveCamera
+  ): PerspectiveCamera {
     //camera.position.set( 0, 150, 500 );
     camera.position.z = 12;
     return camera;
   }
 
-  protected buildSubject(up: UserParam): Object3D[] {
+  protected override buildSubject(up: UserParam): Object3D[] {
     const swarm3dUserParam = up as Swarm3dUserParam;
     const system = this.buildSystem(swarm3dUserParam);
     this.positionStableSystem(swarm3dUserParam);
@@ -138,11 +140,11 @@ export class Swarm3dService extends Scene3dBaseService {
     const movers = this.movers;
     const iter = 0;
     const zAxis = new Vector3(0, 0, 1);
-    const  momentum = new Vector3();
+    const momentum = new Vector3();
     let m = 0;
     for (const mover of movers) {
       const r =
-      swarmUserParam.radiusMin +
+        swarmUserParam.radiusMin +
         Math.random() * (swarmUserParam.radiusMax - swarmUserParam.radiusMin);
       const theta = 2 * Math.PI * Math.random();
       const x = r * Math.sin(theta);
@@ -174,7 +176,7 @@ export class Swarm3dService extends Scene3dBaseService {
     )}).l=${Math.round(v.length())}`;
   }
 
-  public draw(delay: number, fullParam: Animation3dParam): void {
+  public override draw(delay: number, fullParam: Animation3dParam): void {
     super.draw(delay, fullParam);
 
     const swarmUserParam = fullParam.userParam as Swarm3dUserParam;

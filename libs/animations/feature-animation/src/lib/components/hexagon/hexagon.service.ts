@@ -25,12 +25,12 @@ const cos6 = Math.cos(Math.PI / 3.0);
 export class HexagonService extends Scene3dBaseService {
   cube!: Mesh<BoxGeometry, MeshPhongMaterial>;
 
-  protected customizeScene(scene: Scene): Scene {
+  protected override customizeScene(scene: Scene): Scene {
     scene.add(new AmbientLight(0x303030));
     return scene;
   }
 
-  protected buildSubject(up: UserParam): Object3D[] {
+  protected override buildSubject(up: UserParam): Object3D[] {
     const hup = up as HexagonUserParam;
     return this.buildHexagons(hup);
   }
@@ -78,12 +78,14 @@ export class HexagonService extends Scene3dBaseService {
     return [group, cube];
   }
 
-  public draw(delay: number, fullParam: Animation3dParam): void {
+  public override draw(delay: number, fullParam: Animation3dParam): void {
     super.draw(delay, fullParam);
     this.cube.rotation.x += -0.06;
   }
 
-  protected customizeCamera(camera: PerspectiveCamera): PerspectiveCamera {
+  protected override customizeCamera(
+    camera: PerspectiveCamera
+  ): PerspectiveCamera {
     const light = new PointLight(0xffffff, 0.8);
     camera.add(light);
     camera.position.z = 5;

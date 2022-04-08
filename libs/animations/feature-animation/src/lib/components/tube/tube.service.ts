@@ -12,7 +12,7 @@ class CustomCurve extends Curve<Vector3> {
     super();
   }
 
-  getPoint(t: number, optionalTarget = new Vector3()): Vector3 {
+  override getPoint(t: number, optionalTarget = new Vector3()): Vector3 {
     const p = this.userParam;
     const tx =
       p.rx *
@@ -35,7 +35,7 @@ class CustomCurve extends Curve<Vector3> {
   providedIn: 'root',
 })
 export class TubeService extends Scene3dBaseService {
-  protected buildSubject(up: UserParam): Object3D[] {
+  protected override buildSubject(up: UserParam): Object3D[] {
     const tup = up as TubeUserParam;
     const spline = new CustomCurve(tup.scale, tup);
     const tubeGeometry = new TubeGeometry(
