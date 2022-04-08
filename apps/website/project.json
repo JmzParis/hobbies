@@ -8,6 +8,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "allowedCommonJsDependencies": ["color"],
         "outputPath": "dist/apps/website",
         "index": "apps/website/src/index.html",
         "main": "apps/website/src/main.ts",

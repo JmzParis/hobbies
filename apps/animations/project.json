@@ -8,6 +8,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "allowedCommonJsDependencies": ["color"],
         "outputPath": "dist/apps/animations",
         "index": "apps/animations/src/index.html",
         "main": "apps/animations/src/main.ts",
