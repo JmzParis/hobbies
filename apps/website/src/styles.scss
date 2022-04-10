@@ -1,10 +1,46 @@
-body {
+html {
+  font-size: 1.5vmax;
+  --main-memory-color: #e6bf72;
+  color: var(--main-memory-color);
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cabin', sans-serif;
+    background: black;
+
+    .p-button {
+      border-radius: 0.25rem;
+    }
+
+    .p-checkbox {
+      width: 1rem;
+      margin-right: 0.5rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+
+      .p-checkbox-box {
+        width: 1rem;
+        height: 1rem;
+      }
+      .p-checkbox-box.p-highlight {
+        border-radius: 0.25rem;
+        .p-checkbox-icon.pi-check:before {
+          min-height: 0.5rem;
+          min-width: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+.hidden-mobile {
   margin: 0;
   padding: 0;
-  //overflow: hidden;
-  font-family: 'Cabin', sans-serif;
-  background: black;
-  //font-size: 30px;
+}
+.hidden-on-big-screen {
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 767px) and (orientation: portrait) {
@@ -13,7 +49,7 @@ body {
   }
 }
 
-@media (orientation: landscape)  {
+@media (orientation: landscape) {
   .hidden-on-big-screen {
     display: none;
   }

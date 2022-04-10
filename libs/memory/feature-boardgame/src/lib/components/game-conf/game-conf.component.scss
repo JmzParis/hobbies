@@ -1,20 +1,14 @@
 :host {
   display: block;
-
-  //background-color: rgb(65, 66, 58);
-  width: 450px;
-  min-width: 200px;
-  height: 386px;
-  border: 5px solid #e6bf72;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.bigger-for-mobile{
-  font-size: xx-large;
+  width: 28rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 0.1rem solid var(--main-memory-color);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
 }
 .attribution {
-  width: 300px;
+  width: 17rem;
   /* unvisited link */
   a:link {
     color: white;
@@ -36,5 +30,9 @@
   }
 }
 .tab-panels {
-  height: 280px;
+  height: 17.8rem;
+}
+
+.p-field {
+  margin-bottom: 1rem !important;
 }

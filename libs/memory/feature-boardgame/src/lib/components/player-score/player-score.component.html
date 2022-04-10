@@ -3,11 +3,16 @@
   class="player"
   [ngClass]="player.isActive ? 'active-player' : 'inactive-player'"
 >
-  <div class="top-pics p-d-flex p-jc-between">
+  <div class="top-pics flex justify-content-between">
     <img *ngIf="player.avatar" src="{{ player.avatar }}" alt="avatar" />
-    <div class="hidden-mobile player-color-area {{ 'playerid' + player.playerId }}"></div>
+    <div
+      class="hidden-mobile player-color-area {{ 'playerid' + player.playerId }}"
+    ></div>
     <div class="hidden-on-big-screen">
-      <div *ngIf="!player.isWinner" class="p-d-flex p-flex-column p-jc-end">
+      <div
+        *ngIf="!player.isWinner"
+        class="flex flex-column justify-content-end"
+      >
         <div class="hourglass-frame"><div class="hourglass"></div></div>
       </div>
     </div>
@@ -20,13 +25,16 @@
   >
   <br />
   <div class="hidden-mobile">
-    <div class="p-d-flex p-jc-between">
-      <div class="p-d-flex p-flex-column p-jc-around">
+    <div class="flex justify-content-between">
+      <div class="flex flex-column justify-content-around">
         <span>Try:&nbsp;{{ player.tryCount }}</span>
         <span>Trivial:&nbsp;{{ player.trivialCount }}</span>
         <span>Failed:&nbsp;{{ player.failedCount }}</span>
       </div>
-      <div *ngIf="!player.isWinner" class="p-d-flex p-flex-column p-jc-end">
+      <div
+        *ngIf="!player.isWinner"
+        class="flex flex-column justify-content-end"
+      >
         <div class="hourglass-frame"><div class="hourglass"></div></div>
       </div>
     </div>
