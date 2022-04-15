@@ -1,18 +1,23 @@
 .cardboard {
+  width: 98vmin;
+  height: 98vmin;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 0.1rem solid var(--main-memory-color);
+  border-radius: 1.5rem;
+  margin: 1vmin;
+  padding: 2vmin;
+
   display: inline-grid;
+
   grid-gap: calc((var(--cardwidth) / 10) * 1px);
   grid-template-columns: repeat(
     var(--columncount),
     calc(var(--cardwidth) * 1px)
   );
   grid-template-rows: repeat(var(--columncount), calc(var(--cardwidth) * 1px));
+
   background-color: #333;
-
-  //color: #fff;
-  border-radius: 2%; //10px;
-
-  margin: 10px;
-  padding: 20px;
 
   .found.playerid0 {
     background-color: var(--playerid0backcolor);

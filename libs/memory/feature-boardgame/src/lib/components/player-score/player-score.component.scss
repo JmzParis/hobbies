@@ -3,23 +3,24 @@
   width: 17rem;
 }
 .player {
-  margin: 10px;
-  padding: 20px;
+  margin: 1vmin;
+  padding: 2vmin;
 
-  border: 3px solid;
-  border-radius: 10px;
+  border: 0.15rem solid;
+  border-radius: 1.5rem;
 
   .top-pics {
     img {
-      width: 150px;
-      height: 150px;
-      border: 2px solid;
-      border-radius: 10px;
+      width: 15vmin;
+      height: 15vmin;
+      border: 0.05rem solid;
+      border-radius: 1.5rem;
     }
     .player-color-area {
-      border: 2px solid;
-      border-radius: 10px;
-      width: 60px;
+      border: 0.05rem solid;
+      border-radius: 1.5rem;
+      width: 4vmin;
+      height: 4vmin;
       &.playerid0 {
         background-color: var(--playerid0backcolor);
       }
@@ -29,8 +30,8 @@
     }
   }
   .hourglass-frame {
-    width: 100px;
-    height: 100px;
+    width: 15vmin;
+    height: 15vmin;
   }
   .bigger {
     font-size: 2rem;
@@ -48,14 +49,15 @@
 }
 
 .active-player {
-  color: #e6bf72;
-  border-color: #e6bf72;
+  color: var(--main-memory-color);
+  border-color: var(--main-memory-color);
   .hourglass-frame {
-    padding: 10px;
+    padding: 1rem;
     .hourglass {
-      width: 80px;
-      height: 80px;
+      width: 12vmin;
+      height: 12vmin;
       background-image: url('../../../assets/img/Hourglass-80x80.png');
+      background-size: 12vmin;
       -webkit-animation: spin-hourglass 0.8s linear;
       -moz-animation: spin-hourglass 0.8s linear;
       animation: spin-hourglass 0.8s linear;

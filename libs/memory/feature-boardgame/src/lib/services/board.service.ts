@@ -72,7 +72,7 @@ export class BoardService {
       window.innerHeight < window.innerWidth
         ? window.innerHeight
         : window.innerWidth;
-    this.cardWidth = (minDim * 0.85) / conf.columnCount;
+    this.cardWidth = (minDim * 0.86) / conf.columnCount;
 
     const cards = Array(cardsCount);
     for (let cardId = 0; cardId < cardsCount; cardId++) {

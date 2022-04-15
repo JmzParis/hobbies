@@ -5,44 +5,22 @@
 >
   <div class="top-pics flex justify-content-between">
     <img *ngIf="player.avatar" src="{{ player.avatar }}" alt="avatar" />
-    <div
-      class="hidden-mobile player-color-area {{ 'playerid' + player.playerId }}"
-    ></div>
-    <div class="hidden-on-big-screen">
-      <div
-        *ngIf="!player.isWinner"
-        class="flex flex-column justify-content-end"
-      >
-        <div class="hourglass-frame"><div class="hourglass"></div></div>
-      </div>
-    </div>
-  </div>
-  <h1 class="hidden-mobile">{{ player.name }}</h1>
-  <span class="bigger"
-    >Found:&nbsp;{{ player.foundCount }}&nbsp;({{
-      player.foundPercent | number
-    }}%)</span
-  >
-  <br />
-  <div class="hidden-mobile">
-    <div class="flex justify-content-between">
-      <div class="flex flex-column justify-content-around">
-        <span>Try:&nbsp;{{ player.tryCount }}</span>
-        <span>Trivial:&nbsp;{{ player.trivialCount }}</span>
-        <span>Failed:&nbsp;{{ player.failedCount }}</span>
-      </div>
-      <div
-        *ngIf="!player.isWinner"
-        class="flex flex-column justify-content-end"
-      >
-        <div class="hourglass-frame"><div class="hourglass"></div></div>
-      </div>
+    <div class="player-color-area {{ 'playerid' + player.playerId }}"></div>
+
+    <div *ngIf="!player.isWinner" class="flex flex-column justify-content-end">
+      <div class="hourglass-frame"><div class="hourglass"></div></div>
     </div>
   </div>
   <span class="bigger"
     >Elapse:&nbsp;{{
       player.timerTickCount * 1000 | date: 'H:mm:ss':'UTC'
     }}</span
+  >
+  <br />
+  <span class="bigger"
+    >Found:&nbsp;{{ player.foundCount }}&nbsp;({{
+      player.foundPercent | number
+    }}%)</span
   >
   <br />
   <div *ngIf="player.isWinner" class="win swirl-in-fwd">

@@ -1,30 +1,51 @@
-:host {
-  display: block;
-}
-.left-column {
-  .config-area {
-    margin: 10px;
-    padding: 20px;
-    border: 6px solid var(--main-memory-color);
-    border-radius: 10px;
-    h1 {
-      margin: 0px;
-      margin-bottom: 10px;
-    }
+.layout {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: space-between;
+  &.is-landscape {
+    flex-direction: row;
   }
-  .config-area-mobile {
-    margin: 5px;
-    padding: 10px;
-    border: 2px solid var(--main-memory-color);
-    border-radius: 10px;
-    h1 {
-      margin: 0px;
-      margin-bottom: 5px;
-    }
+  &.is-portrait {
+    flex-direction: column;
   }
 
-  .player-area {
-    margin: 10px;
-    padding: 10 px;
+  .left-column {
+    .config-area {
+      margin: 0;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      h1 {
+        margin: 0;
+        width: 70%;
+        font-size: 3rem;
+      }
+      p-button {
+        margin-top: 2vmin;
+      }
+    }
+    .config-area-mobile {
+      margin: 0.5rem;
+      padding: 0.5rem;
+      border: 0.1rem solid var(--main-memory-color);
+      border-radius: 1.5rem;
+      h1 {
+        margin: 0;
+      }
+    }
+
+    .player-area {
+      margin: 0rem;
+      padding: 0.1rem;
+      .players {
+        &.is-landscape {
+          flex-direction: column;
+        }
+        &.is-portrait {
+          flex-direction: row;
+        }
+      }
+    }
   }
 }
