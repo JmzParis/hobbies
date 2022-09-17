@@ -1,8 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-  background: black;
-  font-family: 'Cabin', sans-serif;
-  // font-size: large;
+html {
+  font-size: 1.5vmax;
+  --main-memory-color: #e6bf72;
+  color: var(--main-memory-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cabin', sans-serif;
+    background: black;
+
+    width: 100%;
+    height: 100%;
+
+    .p-button {
+      border-radius: 0.25rem;
+    }
+
+    .p-checkbox {
+      width: 1rem;
+      margin-right: 0.5rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+
+      .p-checkbox-box {
+        width: 1rem;
+        height: 1rem;
+      }
+      .p-checkbox-box.p-highlight {
+        border-radius: 0.25rem;
+        .p-checkbox-icon.pi-check:before {
+          min-height: 0.5rem;
+          min-width: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+.hidden-mobile {
   margin: 0;
   padding: 0;
+}
+.hidden-on-big-screen {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .hidden-mobile {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) {
+  .hidden-on-big-screen {
+    display: none;
+  }
+}
+
+@media (min-width: 767px) {
+  .hidden-on-big-screen {
+    display: none;
+  }
 }
