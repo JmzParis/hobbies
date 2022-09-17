@@ -1,6 +1,6 @@
 {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/shared/util-pot",
   "sourceRoot": "libs/shared/util-pot/src",
   "prefix": "jz",
   "targets": {
@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/shared/util-pot"],
       "options": {
-        "jestConfig": "libs/shared/util-pot/jest.config.js",
+        "jestConfig": "libs/shared/util-pot/jest.config.ts",
         "passWithNoTests": true
       }
     },

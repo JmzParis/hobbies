@@ -1,6 +1,7 @@
-module.exports = {
-  displayName: 'memory-feature-boardgame',
-  preset: '../../../jest.preset.js',
+/* eslint-disable */
+export default {
+  displayName: 'memory',
+  preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../coverage/libs/memory/feature-boardgame',
+  coverageDirectory: '../../coverage/apps/memory',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

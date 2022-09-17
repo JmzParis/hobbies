@@ -20,7 +20,9 @@ const animationsAppRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     AnimationsFeatureAnimationModule,
-    RouterModule.forRoot(animationsAppRoutes, { initialNavigation: 'enabled' }),
+    RouterModule.forRoot(animationsAppRoutes, {
+      initialNavigation: 'enabledBlocking',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

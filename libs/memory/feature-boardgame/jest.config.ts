@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'animations-feature-animation',
+/* eslint-disable */
+export default {
+  displayName: 'memory-feature-boardgame',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../coverage/libs/animations/feature-animation',
+  coverageDirectory: '../../../coverage/libs/memory/feature-boardgame',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

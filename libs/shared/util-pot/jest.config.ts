@@ -1,6 +1,7 @@
-module.exports = {
-  displayName: 'animations',
-  preset: '../../jest.preset.js',
+/* eslint-disable */
+export default {
+  displayName: 'shared-util-pot',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/apps/animations',
+  coverageDirectory: '../../../coverage/libs/shared/util-pot',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

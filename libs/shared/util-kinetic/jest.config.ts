@@ -1,6 +1,7 @@
-module.exports = {
-  displayName: 'website',
-  preset: '../../jest.preset.js',
+/* eslint-disable */
+export default {
+  displayName: 'shared-util-kinetic',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/apps/website',
+  coverageDirectory: '../../../coverage/libs/shared/util-kinetic',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

@@ -1,6 +1,6 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/memory",
   "sourceRoot": "apps/memory/src",
   "prefix": "jz",
   "targets": {
@@ -97,7 +97,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/memory"],
       "options": {
-        "jestConfig": "apps/memory/jest.config.js",
+        "jestConfig": "apps/memory/jest.config.ts",
         "passWithNoTests": true
       }
     }

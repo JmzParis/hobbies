@@ -1,6 +1,6 @@
 {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/memory/feature-boardgame",
   "sourceRoot": "libs/memory/feature-boardgame/src",
   "prefix": "jz",
   "targets": {
@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/memory/feature-boardgame"],
       "options": {
-        "jestConfig": "libs/memory/feature-boardgame/jest.config.js",
+        "jestConfig": "libs/memory/feature-boardgame/jest.config.ts",
         "passWithNoTests": true
       }
     },

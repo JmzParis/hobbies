@@ -20,7 +20,9 @@ const memoryAppRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MemoryFeatureBoardgameModule,
-    RouterModule.forRoot(memoryAppRoutes, { initialNavigation: 'enabled' }),
+    RouterModule.forRoot(memoryAppRoutes, {
+      initialNavigation: 'enabledBlocking',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

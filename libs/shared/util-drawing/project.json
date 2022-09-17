@@ -1,6 +1,6 @@
 {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/shared/util-drawing",
   "sourceRoot": "libs/shared/util-drawing/src",
   "prefix": "jz",
   "targets": {
@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/shared/util-drawing"],
       "options": {
-        "jestConfig": "libs/shared/util-drawing/jest.config.js",
+        "jestConfig": "libs/shared/util-drawing/jest.config.ts",
         "passWithNoTests": true
       }
     },

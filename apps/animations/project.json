@@ -1,6 +1,6 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/animations",
   "sourceRoot": "apps/animations/src",
   "prefix": "jz",
   "targets": {
@@ -98,7 +98,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/animations"],
       "options": {
-        "jestConfig": "apps/animations/jest.config.js",
+        "jestConfig": "apps/animations/jest.config.ts",
         "passWithNoTests": true
       }
     }
