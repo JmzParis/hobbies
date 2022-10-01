@@ -6,7 +6,7 @@ import { Animation3dParam, UserParam } from '../../services/scene-model';
 import {
   AmbientLight,
   BoxGeometry,
-  ExtrudeBufferGeometry,
+  ExtrudeGeometry,
   Group,
   Mesh,
   MeshPhongMaterial,
@@ -61,10 +61,7 @@ export class HexagonService extends Scene3dBaseService {
     const hexagonShape = this.buildHexagonShape(cx, cy, r);
 
     // const hexagonGeometry = new THREE.ShapeBufferGeometry( hexagonShape );
-    const hexagonGeometry = new ExtrudeBufferGeometry(
-      hexagonShape,
-      extrudeSettings
-    );
+    const hexagonGeometry = new ExtrudeGeometry(hexagonShape, extrudeSettings);
     const mesh = new Mesh(hexagonGeometry, material);
     mesh.position.set(0, 0, 0);
     mesh.rotation.set(0, 0, 0);
